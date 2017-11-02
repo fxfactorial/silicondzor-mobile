@@ -1,0 +1,23 @@
+{
+  "libs": [ ],
+  "loadEagerly":[
+    "node_modules/mobx/lib/mobx.js",
+    "node_modules/mobx-react/index.js",
+    "node_modules/mobx-utils/lib/mobx-utils.js",
+    "node_modules/prop-types/index.js",
+    "node_modules/react-native/Libraries/CameraRoll/CameraRoll.js",
+    "node_modules/react-native-fetch-blob/index.js",
+    "node_modules/react-native/Libraries/StyleSheet/StyleSheet.js",
+    "node_modules/realm/lib/index.js",
+    "node_modules/react/dist/react.js",
+    "node_modules/react-navigation/lib-rn/react-navigation.js",
+    "node_modules/react-native/Libraries/react-native/react-native.js"
+  ],
+  "plugins": {
+    "node": { },
+    "requirejs" : { },
+    "es_modules" : { },
+    "doc_comment": { "fullDocs": true },
+    "complete_strings": {}
+  }
+}
