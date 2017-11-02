@@ -7,7 +7,7 @@ import { observer } from 'mobx-react/native';
 import Modal from 'react-native-modal';
 
 import { PADDING_WIDTH_PERCENT } from './styles';
-import { FBModalContent } from './modals';
+import { FBLogin } from './modals';
 
 const login_modal_store = new function() {
   extendObservable(this, {
@@ -15,11 +15,11 @@ const login_modal_store = new function() {
   });
 }();
 
-const open_login_modal = () =>
+const toggle_login_modal = () =>
   (login_modal_store.show = !login_modal_store.show);
 
 const OpenRight = (
-  <TouchableOpacity onPress={open_login_modal}>
+  <TouchableOpacity onPress={toggle_login_modal}>
     <Entypo name={'login'} size={24} />
   </TouchableOpacity>
 );
@@ -44,7 +44,7 @@ const T = observer(
       return (
         <View>
           <Modal isVisible={login_modal_store.show}>
-            <FBModalContent />
+            <FBLogin toggle_enclosing_modal={toggle_login_modal} />
           </Modal>
 
           <Text onPress={() => this.props.navigation.navigate('DrawerOpen')}>

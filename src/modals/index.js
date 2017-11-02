@@ -1,12 +1,15 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 
-export class FBModalContent extends React.Component {
-  render() {
-    return (
-      <View>
-        <Text>Login</Text>
-      </View>
-    );
-  }
-}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'red',
+  },
+});
+
+export const FBLogin = ({ toggle_enclosing_modal }) => (
+  <View style={styles.container}>
+    <Text onPress={toggle_enclosing_modal}>Login</Text>
+  </View>
+);
