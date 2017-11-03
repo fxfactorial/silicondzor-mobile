@@ -1,10 +1,13 @@
 {
   "name": "silicondzor-mobile",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "For the tech community in Armenia",
   "author": null,
   "private": true,
   "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "./node_modules/.bin/exp start --offline"
+  },
   "dependencies": {
     "expo": "^22.0.0",
     "firebase": "^4.6.0",
@@ -17,5 +20,8 @@
     "react-native-modal": "^4.1.1",
     "react-native-tab-view": "^0.0.70",
     "react-navigation": "^1.0.0-beta.16"
+  },
+  "devDependencies": {
+    "exp": "^45.1.0"
   }
 }

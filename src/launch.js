@@ -11,12 +11,11 @@ import { FBLogin } from './modals';
 
 const login_modal_store = new function() {
   extendObservable(this, {
-    show: false,
+    show: true,
   });
 }();
 
-const toggle_login_modal = () =>
-  (login_modal_store.show = !login_modal_store.show);
+const toggle_login_modal = () => (login_modal_store.show = !login_modal_store.show);
 
 const OpenRight = (
   <TouchableOpacity onPress={toggle_login_modal}>
@@ -47,9 +46,7 @@ const T = observer(
             <FBLogin toggle_enclosing_modal={toggle_login_modal} />
           </Modal>
 
-          <Text onPress={() => this.props.navigation.navigate('DrawerOpen')}>
-            Hello World
-          </Text>
+          <Text onPress={() => this.props.navigation.navigate('DrawerOpen')}>Hello World</Text>
         </View>
       );
     }
