@@ -6,19 +6,20 @@ import { extendObservable } from 'mobx';
 import { observer } from 'mobx-react/native';
 import Modal from 'react-native-modal';
 
-import { PADDING_WIDTH_PERCENT } from './styles';
+import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from './styles';
 import { FBLogin } from './modals';
+import dummy_data from 'silicondzor-mobile/dev/dummy-data';
 
 const login_modal_store = new function() {
   extendObservable(this, {
-    show: true,
+    show: false,
   });
+
+  this.toggle_show = () => (this.show = !this.show);
 }();
 
-const toggle_login_modal = () => (login_modal_store.show = !login_modal_store.show);
-
 const OpenRight = (
-  <TouchableOpacity onPress={toggle_login_modal}>
+  <TouchableOpacity onPress={login_modal_store.toggle_show}>
     <Entypo name={'login'} size={24} />
   </TouchableOpacity>
 );
@@ -28,6 +29,29 @@ const DrawerIconOpener = ({ navigate }) => (
     <Entypo name={'code'} size={24} />
   </TouchableOpacity>
 );
+
+const row_separator = <View style={{ height: PADDING_WIDTH_PERCENT_DOUBLE }} />;
+
+class PostingRow extends React.Component {
+  render() {
+    const { title, upvotes, downvotes, id, navigate } = this.props;
+    return (
+      <View>
+        <Text>
+          {title}
+          {upvotes}
+          {downvotes}
+          {id}
+        </Text>
+      </View>
+    );
+  }
+}
+
+const render_row = (navigate, { item }) => {
+  console.warn(item);
+  return <PostingRow {...item} navigate={navigate} />;
+};
 
 const T = observer(
   class T extends React.Component {
@@ -40,13 +64,19 @@ const T = observer(
     });
 
     render() {
+      const { navigate } = this.props.navigation;
       return (
         <View>
           <Modal isVisible={login_modal_store.show}>
-            <FBLogin toggle_enclosing_modal={toggle_login_modal} />
+            <FBLogin toggle_enclosing_modal={login_modal_store.toggle_show} />
           </Modal>
-
-          <Text onPress={() => this.props.navigation.navigate('DrawerOpen')}>Hello World</Text>
+          <FlatList
+            data={dummy_data}
+            ItemSeparatorComponent={() => row_separator}
+            renderItem={render_row.bind(null, navigate)}
+            keyExtractor={({ id }) => id}
+          />
+          <Text onPress={() => navigate('DrawerOpen')}>Hello World</Text>
         </View>
       );
     }
