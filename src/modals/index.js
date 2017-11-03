@@ -11,7 +11,20 @@ import {
 import { observer } from 'mobx-react/native';
 import { extendObservable, when } from 'mobx';
 
-import { PADDING_WIDTH_PERCENT } from '../styles';
+import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_4X } from '../styles';
+
+const login_store = new function() {
+  extendObservable(this, {
+    login: '',
+    password: '',
+    button_enabled: false,
+  });
+
+  when(() => this.login !== '' && this.password !== '', () => (this.button_enabled = true));
+
+  this.set_login = l => (this.login = l);
+  this.set_password = l => (this.password = l);
+}();
 
 const common_login_box = {
   backgroundColor: 'blue',
@@ -49,6 +62,7 @@ const styles = StyleSheet.create({
   login_text: {
     textAlign: 'center',
     paddingTop: '20%',
+    fontSize: 24,
   },
   inputs_spaced: {
     height: '40%',
@@ -56,34 +70,25 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     paddingHorizontal: PADDING_WIDTH_PERCENT,
   },
+  login_button: {
+    fontSize: 32,
+    width: '100%',
+    textAlign: 'center',
+    marginBottom: PADDING_WIDTH_PERCENT_4X,
+  },
 });
-
-const login_store = new function() {
-  extendObservable(this, {
-    login: '',
-    password: '',
-  });
-  when(
-    () => this.login !== '' && this.password !== '',
-    async () => {
-      console.warn('Ready to check password');
-      //
-    }
-  );
-  this.set_login = l => (this.login = l);
-  this.set_password = l => (this.password = l);
-}();
 
 // Using a class because want to do some animations later and need class for that.
 export const FBLogin = observer(
   class extends React.Component {
     render() {
       const { toggle_enclosing_modal } = this.props;
-
+      // This can be a nice animation transition to enabling
+      const backgroundColor = login_store.button_enabled ? 'aliceblue' : 'purple';
       return (
         <View style={styles.container}>
           <View style={styles.login_box}>
-            <Text style={styles.login_text}>Login</Text>
+            <Text style={styles.login_text}>Silicondzor</Text>
 
             <View style={styles.inputs}>
               <View style={styles.inputs_spaced}>
@@ -104,6 +109,10 @@ export const FBLogin = observer(
                 />
               </View>
             </View>
+
+            <Text onPress={this.do_login} style={[styles.login_button, { backgroundColor }]}>
+              Login
+            </Text>
           </View>
         </View>
       );
