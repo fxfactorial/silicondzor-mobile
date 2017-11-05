@@ -24,6 +24,7 @@ export const login_store = new function() {
 export const user_session_store = new function() {
   extendObservable(this, {
     logged_in: false,
+    currently_viewing_post: null,
   });
 }();
 

@@ -29,7 +29,7 @@ class PostingRow extends React.Component {
     const { title, upvotes, downvotes, id, navigate } = this.props;
     return (
       <View style={styles.post_row}>
-        <Text>
+        <Text onPress={() => navigate('post_discussion')}>
           {title}
           {upvotes}
           {downvotes}
