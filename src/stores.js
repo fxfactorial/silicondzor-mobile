@@ -1,4 +1,4 @@
-import { extendObservable, when } from 'mobx';
+import { extendObservable, when, runInAction } from 'mobx';
 
 export const login_modal_store = new function() {
   extendObservable(this, {
@@ -21,4 +21,10 @@ export const login_store = new function() {
   this.set_password = l => (this.password = l);
 }();
 
-export default { login_modal_store, login_store };
+export const user_session_store = new function() {
+  extendObservable(this, {
+    logged_in: false,
+  });
+}();
+
+export default { login_modal_store, login_store, user_session_store };

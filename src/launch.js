@@ -2,7 +2,6 @@ import React from 'react';
 import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { DrawerNavigator, TabNavigator } from 'react-navigation';
 import { observer } from 'mobx-react/native';
-import Modal from 'react-native-modal';
 import { Entypo } from '@expo/vector-icons';
 
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from './styles';
@@ -29,20 +28,22 @@ const open_right = (
 
 const tabs = TabNavigator(
   {
-    root: {
+    News: {
       screen: discussion,
     },
-    post: { screen: Post },
-    search: { screen: Search },
+    Post: { screen: Post },
+    Search: { screen: Search },
   },
   {
-    navigationOptions: ({ navigation, store }) => ({
-      tabBarLabel: 'Words',
-      headerTitle: 'Silicondzor',
-      headerRight: open_right,
-      headerLeft: DrawerIconOpener(navigation),
-      headerStyle: { paddingHorizontal: PADDING_WIDTH_PERCENT },
-    }),
+    navigationOptions: ({ navigation, store }) => {
+      return {
+        tabBarLabel: navigation.state.routeName,
+        headerTitle: 'Silicondzor',
+        headerRight: open_right,
+        headerLeft: DrawerIconOpener(navigation),
+        headerStyle: { paddingHorizontal: PADDING_WIDTH_PERCENT },
+      };
+    },
   }
 );
 

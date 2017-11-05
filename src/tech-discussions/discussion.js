@@ -4,7 +4,7 @@ import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native
 import Modal from 'react-native-modal';
 import { Entypo } from '@expo/vector-icons';
 
-import { FBLogin } from '../modals';
+import { FBBasedLogin } from '../modals';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from 'silicondzor-mobile/src/styles';
 import { login_modal_store } from '../stores';
 import dummy_data from 'silicondzor-mobile/dev/dummy-data';
@@ -12,8 +12,14 @@ import dummy_data from 'silicondzor-mobile/dev/dummy-data';
 const row_separator = <View style={{ height: PADDING_WIDTH_PERCENT_DOUBLE }} />;
 
 const styles = StyleSheet.create({
+  posting_container: {
+    flex: 1,
+    padding: PADDING_WIDTH_PERCENT,
+  },
+  posts_table: {
+    backgroundColor: 'orange',
+  },
   post_row: {
-    //
     backgroundColor: 'red',
   },
 });
@@ -35,7 +41,6 @@ class PostingRow extends React.Component {
 }
 
 const render_row = (navigate, { item }) => {
-  console.warn(item);
   return <PostingRow {...item} navigate={navigate} />;
 };
 
@@ -44,17 +49,17 @@ export default observer(
     render() {
       const { navigate } = this.props.navigation;
       return (
-        <View>
+        <View style={styles.posting_container}>
           <Modal isVisible={login_modal_store.show}>
-            <FBLogin toggle_enclosing_modal={login_modal_store.toggle_show} />
+            <FBBasedLogin toggle_enclosing_modal={login_modal_store.toggle_show} />
           </Modal>
           <FlatList
+            style={styles.posts_table}
             data={dummy_data}
             ItemSeparatorComponent={() => row_separator}
             renderItem={render_row.bind(null, navigate)}
             keyExtractor={({ id }) => id}
           />
-          <Text onPress={() => navigate('DrawerOpen')}>Hello World</Text>
         </View>
       );
     }

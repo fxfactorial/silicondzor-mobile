@@ -11,7 +11,7 @@ import {
 import { observer } from 'mobx-react/native';
 
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_4X } from '../styles';
-import { login_store } from '../stores';
+import { login_store, user_session_store } from '../stores';
 
 const common_login_box = {
   backgroundColor: 'blue',
@@ -66,9 +66,9 @@ const styles = StyleSheet.create({
 });
 
 // Using a class because want to do some animations later and need class for that.
-export const FBLogin = observer(
+export const FBBasedLogin = observer(
   class extends React.Component {
-    render() {
+    not_logged_in_view() {
       const { toggle_enclosing_modal } = this.props;
       // This can be a nice animation transition to enabling
       const backgroundColor = login_store.button_enabled ? 'aliceblue' : 'purple';
@@ -103,6 +103,23 @@ export const FBLogin = observer(
           </View>
         </View>
       );
+    }
+
+    logged_in_view() {
+      return (
+        <View>
+          <Text>Logged in view</Text>
+        </View>
+      );
+    }
+
+    render() {
+      const { logged_in } = user_session_store;
+      if (logged_in === false) {
+        return this.not_logged_in_view();
+      } else {
+        return this.logged_in_view();
+      }
     }
   }
 );
