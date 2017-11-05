@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
 export const FBBasedLogin = observer(
   class extends React.Component {
     not_logged_in_view() {
-      const { toggle_enclosing_modal } = this.props;
       // This can be a nice animation transition to enabling
       const backgroundColor = login_store.button_enabled ? 'aliceblue' : 'purple';
       return (

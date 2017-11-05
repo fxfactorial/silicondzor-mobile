@@ -51,7 +51,7 @@ export default observer(
       return (
         <View style={styles.posting_container}>
           <Modal isVisible={login_modal_store.show}>
-            <FBBasedLogin toggle_enclosing_modal={login_modal_store.toggle_show} />
+            <FBBasedLogin />
           </Modal>
           <FlatList
             style={styles.posts_table}
