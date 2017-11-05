@@ -9,22 +9,9 @@ import {
   Animated,
 } from 'react-native';
 import { observer } from 'mobx-react/native';
-import { extendObservable, when } from 'mobx';
 
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_4X } from '../styles';
-
-const login_store = new function() {
-  extendObservable(this, {
-    login: '',
-    password: '',
-    button_enabled: false,
-  });
-
-  when(() => this.login !== '' && this.password !== '', () => (this.button_enabled = true));
-
-  this.set_login = l => (this.login = l);
-  this.set_password = l => (this.password = l);
-}();
+import { login_store } from '../stores';
 
 const common_login_box = {
   backgroundColor: 'blue',
