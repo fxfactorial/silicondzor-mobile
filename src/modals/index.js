@@ -11,7 +11,7 @@ import {
 import { observer } from 'mobx-react/native';
 
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_4X } from '../styles';
-import { login_store, user_session_store } from '../stores';
+import { login_store, user_session_store } from '../state';
 
 const common_login_box = {
   backgroundColor: 'blue',

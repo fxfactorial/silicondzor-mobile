@@ -5,7 +5,7 @@ import { observer } from 'mobx-react/native';
 import { Entypo } from '@expo/vector-icons';
 
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from './styles';
-import { login_modal_store } from './stores';
+import { login_modal_store } from './state';
 import tech_events from './tech-events/events';
 import bug_bounty_board from './bug-bounty-board/board.js';
 import jobs_board from './jobs-board/board.js';
@@ -34,6 +34,9 @@ const tabs = TabNavigator(
     Post: { screen: Post },
     Search: { screen: Search },
   },
+  // We do it this way so that all the screens get this navigation
+  // option. Otherwise, could have passed this separate per object,
+  // then it would be per screen
   {
     navigationOptions: ({ navigation, store }) => {
       return {

@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react/native';
 import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 
-import { user_session_store } from '../stores';
+import { user_session_store } from '../state';
 
 const styles = StyleSheet.create({
   post_container: {

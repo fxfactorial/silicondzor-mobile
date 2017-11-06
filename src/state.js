@@ -28,4 +28,10 @@ export const user_session_store = new function() {
   });
 }();
 
-export default { login_modal_store, login_store, user_session_store };
+export const search_discussions_store = new function() {
+  extendObservable(this, {
+    search_results: [],
+  });
+}();
+
+export default { login_modal_store, login_store, user_session_store, search_discussions_store };

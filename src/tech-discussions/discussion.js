@@ -6,7 +6,7 @@ import { Entypo } from '@expo/vector-icons';
 
 import { FBBasedLogin } from '../modals';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from 'silicondzor-mobile/src/styles';
-import { login_modal_store } from '../stores';
+import { login_modal_store } from '../state';
 import dummy_data from 'silicondzor-mobile/dev/dummy-data';
 
 const row_separator = <View style={{ height: PADDING_WIDTH_PERCENT_DOUBLE }} />;
