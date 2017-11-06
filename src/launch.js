@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { DrawerNavigator, TabNavigator } from 'react-navigation';
-import { observer } from 'mobx-react/native';
 import { Entypo } from '@expo/vector-icons';
 
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from './styles';
@@ -14,11 +13,7 @@ import discussion from './tech-discussions/discussion';
 import Search from './tech-discussions/search';
 import Post from './tech-discussions/post';
 
-const DrawerIconOpener = ({ navigate }) => (
-  <TouchableOpacity onPress={() => navigate('DrawerOpen')}>
-    <Entypo name={'code'} size={24} />
-  </TouchableOpacity>
-);
+import { DrawerIconOpener } from './common-components';
 
 const open_right = (
   <TouchableOpacity onPress={login_modal_store.toggle_show}>
