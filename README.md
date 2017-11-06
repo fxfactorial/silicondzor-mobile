@@ -17,3 +17,11 @@ the root of the application. Its structure should look like:
   }
 }
 ```
+
+Do `yarn` in the root of the freshly cloned application to download
+dependencies. Then to start the packager:
+
+```
+$ yarn start
+```
+
