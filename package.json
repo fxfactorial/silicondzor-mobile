@@ -6,7 +6,9 @@
   "private": true,
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "./node_modules/.bin/exp start --offline"
+    "start": "./node_modules/.bin/exp start --offline",
+    "ios":"./node_modules/.bin/exp ios --offline",
+    "android":"./node_modules/.bin/exp ios --offline"
   },
   "dependencies": {
     "expo": "^22.0.0",

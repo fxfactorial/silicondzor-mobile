@@ -25,3 +25,14 @@ dependencies. Then to start the packager:
 $ yarn start
 ```
 
+Run on the iOS simulator with: 
+
+```
+$ yarn ios
+```
+
+Run on the ALREADY running Android simulator with
+
+```
+$ yarn android
+```
