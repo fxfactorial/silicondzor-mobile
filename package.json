@@ -7,8 +7,8 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "./node_modules/.bin/exp start --offline",
-    "ios":"./node_modules/.bin/exp ios --offline",
-    "android":"./node_modules/.bin/exp ios --offline"
+    "ios": "./node_modules/.bin/exp ios --offline",
+    "android": "./node_modules/.bin/exp ios --offline"
   },
   "dependencies": {
     "expo": "^22.0.0",
@@ -18,6 +18,7 @@
     "mobx-state-tree": "^1.1.0",
     "react": "16.0.0-beta.5",
     "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.1.tar.gz",
+    "react-native-datepicker": "^1.6.0",
     "react-native-extended-stylesheet": "^0.8.0",
     "react-native-modal": "^4.1.1",
     "react-native-tab-view": "^0.0.70",
