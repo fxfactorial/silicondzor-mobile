@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { DrawerNavigator, TabNavigator } from 'react-navigation';
-import { Entypo } from '@expo/vector-icons';
+import { Entypo, Octicons } from '@expo/vector-icons';
 
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from './styles';
 import { login_modal_store } from './state';
@@ -21,13 +21,32 @@ const open_right = (
   </TouchableOpacity>
 );
 
+const NEWS_TAB_ICON = <Entypo name={'news'} size={24} />;
+const POST_TAB_ICON = <Entypo name={'new-message'} size={24} />;
+const SEARCH_TAB_ICON = (
+  <Octicons name={'search'} style={{ marginTop: PADDING_WIDTH_PERCENT }} size={24} />
+);
+
 const tabs = TabNavigator(
   {
     News: {
       screen: discussion,
+      navigationOptions: {
+        tabBarIcon: NEWS_TAB_ICON,
+      },
     },
-    Post: { screen: Post },
-    Search: { screen: Search },
+    Post: {
+      screen: Post,
+      navigationOptions: {
+        tabBarIcon: POST_TAB_ICON,
+      },
+    },
+    Search: {
+      screen: Search,
+      navigationOptions: {
+        tabBarIcon: SEARCH_TAB_ICON,
+      },
+    },
   },
   // We do it this way so that all the screens get this navigation
   // option. Otherwise, could have passed this separate per object,
@@ -41,6 +60,9 @@ const tabs = TabNavigator(
         headerLeft: DrawerIconOpener(navigation),
         headerStyle: { paddingHorizontal: PADDING_WIDTH_PERCENT },
       };
+    },
+    tabBarOptions: {
+      showIcon: true,
     },
   }
 );
