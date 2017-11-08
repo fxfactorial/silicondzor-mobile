@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { observer } from 'mobx-react/native';
 
 import { PADDING_WIDTH_PERCENT } from '../styles';
 import { search_discussions_store } from '../state';

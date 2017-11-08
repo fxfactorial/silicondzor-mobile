@@ -34,4 +34,17 @@ export const search_discussions_store = new function() {
   });
 }();
 
-export default { login_modal_store, login_store, user_session_store, search_discussions_store };
+export const new_discussion_store = new function() {
+  extendObservable(this, {
+    title: '',
+    body: '',
+  });
+}();
+
+export default {
+  login_modal_store,
+  login_store,
+  user_session_store,
+  search_discussions_store,
+  new_discussion_store,
+};

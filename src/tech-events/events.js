@@ -9,9 +9,12 @@ const styles = StyleSheet.create({
   events_container: {
     flex: 1,
   },
+  header_style: {
+    //
+  },
 });
 
-const headerTitle = <Text>Tech Events in Armenia</Text>;
+const headerTitle = <Text style={styles.header_style}>Tech Events in Armenia</Text>;
 
 export default observer(
   class extends React.Component {

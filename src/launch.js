@@ -10,8 +10,8 @@ import bug_bounty_board from './bug-bounty-board/board.js';
 import jobs_board from './jobs-board/board.js';
 
 import discussion from './tech-discussions/discussion';
-import Search from './tech-discussions/search';
-import Post from './tech-discussions/post';
+import search from './tech-discussions/search';
+import new_post from './tech-discussions/new-post';
 
 import { DrawerIconOpener } from './common-components';
 
@@ -36,13 +36,13 @@ const tabs = TabNavigator(
       },
     },
     Post: {
-      screen: Post,
+      screen: new_post,
       navigationOptions: {
         tabBarIcon: POST_TAB_ICON,
       },
     },
     Search: {
-      screen: Search,
+      screen: search,
       navigationOptions: {
         tabBarIcon: SEARCH_TAB_ICON,
       },
