@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, TextInput, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { observer } from 'mobx-react/native';
 
 import { PADDING_WIDTH_PERCENT } from '../styles';
@@ -13,16 +13,32 @@ const styles = StyleSheet.create({
   },
   search_bar_container: {
     flexDirection: 'row',
+    borderRadius: 50,
+    backgroundColor: 'purple',
+    height: '10%',
   },
   search_results_table: {
-    backgroundColor: 'red',
-    //
+    backgroundColor: 'orange',
+    padding: PADDING_WIDTH_PERCENT,
+  },
+  spacer: { height: '5%' },
+  search_text_input: {
+    width: '100%',
+    borderRadius: 50,
+    paddingLeft: '5%',
+    backgroundColor: 'green',
   },
 });
 
+const spacer = <View style={styles.spacer} />;
+
 const SearchBar = observer(() => (
   <View style={styles.search_bar_container}>
-    <Text>Search</Text>
+    <TextInput
+      style={styles.search_text_input}
+      onChangeText={search_discussions_store.set_search_text}
+      value={search_discussions_store.search_text}
+    />
   </View>
 ));
 
@@ -52,6 +68,7 @@ const SearchResults = observer(() => (
 export default observer(({ navigation }) => (
   <View style={styles.search}>
     <SearchBar />
+    {spacer}
     <SearchResults />
   </View>
 ));
