@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { observer } from 'mobx-react/native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { WithFBLoginModalAvailable } from '../common-components';
 
 import { new_discussion_store } from '../state';
 import { PADDING_WIDTH_PERCENT } from '../styles';
@@ -60,7 +61,7 @@ export default observer(
   class extends React.Component {
     render() {
       return (
-        <View style={styles.new_post_container}>
+        <WithFBLoginModalAvailable style={styles.new_post_container}>
           <View style={styles.title_banner}>
             {post_title}
             <Text style={styles.post_title}>{new_discussion_store.body.length}</Text>
@@ -71,7 +72,7 @@ export default observer(
             style={styles.post_title_input}
           />
           <InputWithEffect />
-        </View>
+        </WithFBLoginModalAvailable>
       );
     }
   }

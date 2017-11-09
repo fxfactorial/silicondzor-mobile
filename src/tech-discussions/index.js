@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
-import { DrawerNavigator, TabNavigator } from 'react-navigation';
+import { TabNavigator } from 'react-navigation';
 
 import {
   NEWS_TAB_ICON,
@@ -15,12 +15,6 @@ import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from '../styles';
 import discussion from './discussion';
 import search from './search';
 import new_post from './new-post';
-
-const open_right = (
-  <TouchableOpacity onPress={login_modal_store.toggle_show}>
-    <Entypo name={'login'} size={24} />
-  </TouchableOpacity>
-);
 
 export default TabNavigator(
   {
@@ -47,11 +41,10 @@ export default TabNavigator(
   // option. Otherwise, could have passed this separate per object,
   // then it would be per screen
   {
-    navigationOptions: ({ navigation, store }) => {
+    navigationOptions: ({ navigation }) => {
       return {
         tabBarLabel: navigation.state.routeName,
         headerTitle: 'Silicondzor',
-        headerRight: open_right,
         headerLeft: DrawerIconOpener(navigation),
         headerStyle: { paddingHorizontal: PADDING_WIDTH_PERCENT },
       };

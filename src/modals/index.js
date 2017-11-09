@@ -9,9 +9,10 @@ import {
   Animated,
 } from 'react-native';
 import { observer } from 'mobx-react/native';
+import Modal from 'react-native-modal';
 
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_4X } from '../styles';
-import { login_store, user_session_store } from '../state';
+import { login_store, user_session_store, login_modal_store } from '../state';
 
 const common_login_box = {
   backgroundColor: 'blue',
@@ -63,6 +64,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: PADDING_WIDTH_PERCENT_4X,
   },
+  login_input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    backgroundColor: 'purple',
+  },
 });
 
 // Using a class because want to do some animations later and need class for that.
@@ -79,12 +86,7 @@ export const FBBasedLogin = observer(
             <View style={styles.inputs}>
               <View style={styles.inputs_spaced}>
                 <TextInput
-                  style={{
-                    height: 40,
-                    borderColor: 'gray',
-                    borderWidth: 1,
-                    backgroundColor: 'purple',
-                  }}
+                  style={styles.login_input}
                   onChangeText={login_store.set_login}
                   value={login_store.login}
                 />
@@ -104,6 +106,10 @@ export const FBBasedLogin = observer(
       );
     }
 
+    do_login() {
+      login_modal_store.show = false;
+    }
+
     logged_in_view() {
       return (
         <View>
@@ -114,11 +120,8 @@ export const FBBasedLogin = observer(
 
     render() {
       const { logged_in } = user_session_store;
-      if (logged_in === false) {
-        return this.not_logged_in_view();
-      } else {
-        return this.logged_in_view();
-      }
+      const content = logged_in === false ? this.not_logged_in_view() : this.logged_in_view();
+      return <Modal isVisible={login_modal_store.show}>{content}</Modal>;
     }
   }
 );

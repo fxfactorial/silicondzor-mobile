@@ -1,12 +1,10 @@
 import React from 'react';
 import { observer } from 'mobx-react/native';
 import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
-import Modal from 'react-native-modal';
 import { Entypo } from '@expo/vector-icons';
 
-import { FBBasedLogin } from '../modals';
+import { WithFBLoginModalAvailable } from '../common-components';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from 'silicondzor-mobile/src/styles';
-import { login_modal_store } from '../state';
 import dummy_data from 'silicondzor-mobile/dev/dummy-data';
 
 const row_separator = <View style={{ height: PADDING_WIDTH_PERCENT_DOUBLE }} />;
@@ -49,10 +47,7 @@ export default observer(
     render() {
       const { navigate } = this.props.navigation;
       return (
-        <View style={styles.posting_container}>
-          <Modal isVisible={login_modal_store.show}>
-            <FBBasedLogin />
-          </Modal>
+        <WithFBLoginModalAvailable style={styles.posting_container}>
           <FlatList
             style={styles.posts_table}
             data={dummy_data}
@@ -60,7 +55,7 @@ export default observer(
             renderItem={render_row.bind(null, navigate)}
             keyExtractor={({ id }) => id}
           />
-        </View>
+        </WithFBLoginModalAvailable>
       );
     }
   }
