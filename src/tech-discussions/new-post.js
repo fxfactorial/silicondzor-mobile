@@ -9,7 +9,6 @@ import {
   Animated,
 } from 'react-native';
 import { observer } from 'mobx-react/native';
-import { Hideo, Akira } from 'react-native-textinput-effects';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { new_discussion_store } from '../state';
@@ -23,42 +22,38 @@ const styles = StyleSheet.create({
   },
   post_title: {
     fontSize: 24,
-    // textAlign: 'center',
-    //
-  },
-  post_content: {
-    height: 300,
   },
   title_input: {
-    //
-    height: 10,
     backgroundColor: 'purple',
+  },
+  post_content_input_container: {
+    flex: 1,
+    backgroundColor: 'yellow',
+  },
+  post_content: {
+    flex: 1,
+    padding: PADDING_WIDTH_PERCENT,
+    backgroundColor: 'green',
+  },
+
+  post_title_input: {
+    backgroundColor: 'red',
+    padding: PADDING_WIDTH_PERCENT,
+  },
+  post_content_prompt: {
+    fontSize: 16,
+  },
+  title_banner: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
 
 const post_title = <Text style={styles.post_title}>Discussion Title</Text>;
-
-const InputWithEffect = observer(
-  class extends React.Component {
-    componentDidMount() {
-      console.warn(this._text_input);
-    }
-
-    render() {
-      return (
-        <TouchableWithoutFeedback>
-          <Animated.View>
-            <Text>Be kind and respectful in what you say</Text>
-            <TextInput
-              onChangeText={new_discussion_store.set_body}
-              style={[styles.post_content]}
-              value={new_discussion_store.body}
-            />
-          </Animated.View>
-        </TouchableWithoutFeedback>
-      );
-    }
-  }
+const post_prompt = (
+  <Text style={[styles.post_content_prompt, { textAlign: 'center' }]}>
+    Be kind and respectful in what you say
+  </Text>
 );
 
 export default observer(
@@ -66,19 +61,37 @@ export default observer(
     render() {
       return (
         <View style={styles.new_post_container}>
-          {post_title}
-          <Hideo
+          <View style={styles.title_banner}>
+            {post_title}
+            <Text style={styles.post_title}>{new_discussion_store.body.length}</Text>
+          </View>
+          <TextInput
             value={new_discussion_store.title}
             onChangeText={new_discussion_store.set_title}
-            iconClass={MaterialIcons}
-            iconName={'subtitles'}
-            iconColor={'white'}
-            // this is used as backgroundColor of icon container view.
-            iconBackgroundColor={'#f2a59d'}
-            inputStyle={{ color: '#464949' }}
+            style={styles.post_title_input}
           />
           <InputWithEffect />
         </View>
+      );
+    }
+  }
+);
+
+const InputWithEffect = observer(
+  class extends React.Component {
+    render() {
+      return (
+        <TouchableWithoutFeedback>
+          <Animated.View style={styles.post_content_input_container}>
+            {post_prompt}
+            <TextInput
+              multiline={true}
+              onChangeText={new_discussion_store.set_body}
+              style={[styles.post_content]}
+              value={new_discussion_store.body}
+            />
+          </Animated.View>
+        </TouchableWithoutFeedback>
       );
     }
   }

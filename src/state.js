@@ -39,6 +39,8 @@ export const new_discussion_store = new function() {
     title: '',
     body: '',
   });
+  this.set_title = t => (this.title = t);
+  this.set_body = t => (this.body = t);
 }();
 
 export default {
