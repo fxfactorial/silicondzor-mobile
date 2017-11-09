@@ -24,14 +24,17 @@ export const login_store = new function() {
 export const user_session_store = new function() {
   extendObservable(this, {
     logged_in: false,
-    currently_viewing_post: null,
+    currently_viewing_post: {},
   });
 }();
+import { search_dummy_results } from 'silicondzor-mobile/dev/dummy-data';
 
 export const search_discussions_store = new function() {
   extendObservable(this, {
-    search_results: [],
+    search_results: search_dummy_results,
+    search_text: '',
   });
+  this.set_search_text = t => (this.search_text = t);
 }();
 
 export const new_discussion_store = new function() {
