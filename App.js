@@ -1,4 +1,5 @@
 import { StackNavigator } from 'react-navigation';
+import { useStrict } from 'mobx';
 import * as firebase from 'firebase';
 
 import credentials from './credentials.json';
@@ -7,6 +8,7 @@ import launch_drawer from './src/launch.js';
 import post_drilldown from './src/tech-discussions/post-drilldown';
 
 console.disableYellowBox = true;
+useStrict(true);
 
 export default StackNavigator({
   home: { screen: launch_drawer },

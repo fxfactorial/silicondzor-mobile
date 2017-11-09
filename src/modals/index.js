@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import { observer } from 'mobx-react/native';
 import Modal from 'react-native-modal';
+import { Facebook } from 'expo';
+import { asyncAction } from 'mobx-utils';
 
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_4X } from '../styles';
 import { login_store, user_session_store, login_modal_store } from '../state';
@@ -106,8 +108,11 @@ export const FBBasedLogin = observer(
       );
     }
 
-    do_login() {
-      login_modal_store.show = false;
+    async do_login() {
+      // const result = await Facebook.logInWithReadPermissionsAsync()
+      await asyncAction(function*() {
+        login_modal_store.show = false;
+      })();
     }
 
     logged_in_view() {

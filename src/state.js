@@ -2,10 +2,10 @@ import { extendObservable, when, runInAction } from 'mobx';
 
 export const login_modal_store = new function() {
   extendObservable(this, {
-    show: false,
+    show: true,
   });
 
-  this.toggle_show = () => (this.show = !this.show);
+  this.toggle_show = () => runInAction(() => (this.show = !this.show));
 }();
 
 export const login_store = new function() {
