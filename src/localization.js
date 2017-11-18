@@ -2,6 +2,7 @@ import flags from './flags';
 
 export default {
   en: {
+    silicondzor: 'Silicondzor',
     jobs_board: 'Jobs board',
     discussion: 'Discussions',
     emoji_flag: flags.en,
@@ -35,6 +36,7 @@ export default {
     new_post_title: 'New Discussion-am',
     bug_bounty: 'Bug Bounty-AM',
     jobs_board: 'Jobs-am',
+    silicondzor: 'Silicondzor-AM',
   },
   ru: {
     jobs_board: 'Jobs board',
@@ -51,5 +53,6 @@ export default {
     new_post_title: 'New Discussion-ru',
     bug_bounty: 'Bug Bounty-Ru',
     jobs_board: 'Jobs-ru',
+    silicondzor: 'Silicondzor-RU',
   },
 };
