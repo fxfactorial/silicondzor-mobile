@@ -1,5 +1,5 @@
 import React from 'react';
-import { observer } from 'mobx-react/native';
+import { observer, Observer } from 'mobx-react/native';
 import {
   Text,
   View,
@@ -22,11 +22,15 @@ const styles = StyleSheet.create({
   },
 });
 
+const title = (
+  <Observer>{() => <Text style={styles.title}>{lang_store.locale.settings}</Text>}</Observer>
+);
+
 // Using class because might want to use animations
 export default observer(
   class extends React.Component {
     static navigationOptions = ({ navigation }) => ({
-      headerTitle: 'Settings',
+      headerTitle: title,
       headerRight: null,
       headerLeft: DrawerIconOpener(navigation),
       headerStyle: { paddingHorizontal: PADDING_WIDTH_PERCENT },
