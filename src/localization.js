@@ -11,6 +11,7 @@ export default {
     language: 'Language',
     up: 'up',
     down: 'down',
+    search: 'Search...',
   },
   am: {
     jobs_board: 'Jobs board',
@@ -22,6 +23,7 @@ export default {
     language: 'լեզու',
     up: 'up-am',
     down: 'down-am',
+    search: 'Search-am...',
   },
   ru: {
     jobs_board: 'Jobs board',
@@ -33,5 +35,6 @@ export default {
     language: 'язык',
     up: 'up-ru',
     down: 'down-ru',
+    search: 'Search-ru...',
   },
 };

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { observer, Observer } from 'mobx-react/native';
-import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
 import { user_session_store as user_store, language_setting_store as lang_store } from '../state';
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   post_author: {
-    fontSize: 10,
+    fontSize: 11,
     textAlign: 'right',
   },
 });
@@ -101,7 +101,9 @@ export default observer(
     render() {
       return (
         <WithFBLoginModalAvailable style={styles.post_container}>
-          <FullPost {...user_store.currently_viewing_post} />
+          <ScrollView>
+            <FullPost {...user_store.currently_viewing_post} />
+          </ScrollView>
         </WithFBLoginModalAvailable>
       );
     }

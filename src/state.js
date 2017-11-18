@@ -55,6 +55,15 @@ export const user_session_store = new function() {
     runInAction(() => {
       this.push_notifications_enabled = !this.push_notifications_enabled;
     });
+  this.change_upvotes_by = amount =>
+    runInAction(() => {
+      this.currently_viewing_post.upvotes += amount;
+    });
+
+  this.change_downvotes_by = amount =>
+    runInAction(() => {
+      this.currently_viewing_post.downvotes += amount;
+    });
 }();
 
 import { events_dummy_results } from 'silicondzor-mobile/dev/dummy-data';
@@ -81,7 +90,11 @@ export const search_discussions_store = new function() {
     search_results: search_dummy_results,
     search_text: '',
   });
-  this.set_search_text = (t: string) => (this.search_text = t);
+
+  this.change_search_text = s =>
+    runInAction(() => {
+      this.search_text = s;
+    });
 }();
 
 export const new_discussion_store = new function() {
