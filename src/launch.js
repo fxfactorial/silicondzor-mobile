@@ -19,8 +19,8 @@ const open_right = (
 // setup, most likely a tab navigator in each
 export default DrawerNavigator(
   {
-    // tech_discussions: { screen: tech_discussions },
-    // tech_events: { screen: tech_events },
+    tech_discussions: { screen: tech_discussions },
+    tech_events: { screen: tech_events },
     bug_bounty_board: { screen: bug_bounty_board },
     jobs_board: { screen: jobs_board },
   },
