@@ -4,6 +4,7 @@ import React from 'react';
 import { observer, Observer } from 'mobx-react/native';
 import { Text, View, FlatList, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
+import { Badge } from 'react-native-elements';
 
 import { user_session_store as user_store, language_setting_store as lang_store } from '../state';
 import { VOTE_ELEMENTS, WithFBLoginModalAvailable, vote_with_action } from '../common';
@@ -15,10 +16,6 @@ const { upvote, downvote } = VOTE_ELEMENTS;
 const styles = StyleSheet.create({
   post_container: {
     flex: 1,
-    // backgroundColor: 'red',
-  },
-  current_post_title: {
-    // color: 'orange',
   },
   full_post: {
     backgroundColor: 'red',
@@ -26,12 +23,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: PADDING_WIDTH_PERCENT,
-  },
-  just_row: {
-    backgroundColor: 'red',
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   post_toprow: {
     flexDirection: 'row',
@@ -42,7 +33,25 @@ const styles = StyleSheet.create({
   },
   post_author: {
     fontSize: 11,
-    textAlign: 'right',
+  },
+  post_content_container: {
+    backgroundColor: 'purple',
+    minHeight: '30%',
+    padding: PADDING_WIDTH_PERCENT,
+  },
+  post_content_text: {
+    color: 'white',
+    fontSize: 15,
+  },
+  post_scroll_container: {
+    flex: 1,
+    height: '100%',
+    backgroundColor: 'orange',
+  },
+  replies_container: {
+    backgroundColor: 'blue',
+    flex: 1,
+    minHeight: '100%',
   },
 });
 
@@ -62,7 +71,7 @@ const headerTitle = (
 const upvote_action = post_id => async () => await upvote_query(user_store.user_fb_id, post_id);
 const downvote_action = post_id => async () => await downvote_query(user_store.user_fb_id, post_id);
 
-const FullPost = ({
+const PostTitle = ({
   author_id,
   author_name,
   title,
@@ -85,8 +94,22 @@ const FullPost = ({
       {top_row}
       <View>
         <Text style={styles.post_title}>{title}</Text>
-        <Text style={styles.post_author}>{author_name}</Text>
+        <Badge textStyle={styles.post_author} value={author_name} />
       </View>
+    </View>
+  );
+};
+
+const PostContent = ({ content, post_id }) => (
+  <View style={styles.post_content_container}>
+    <Text style={styles.post_content_text}>{content}</Text>
+  </View>
+);
+
+const Replies = ({ post_id, replies }) => {
+  return (
+    <View style={styles.replies_container}>
+      <Text>Some recursive algo</Text>
     </View>
   );
 };
@@ -101,8 +124,10 @@ export default observer(
     render() {
       return (
         <WithFBLoginModalAvailable style={styles.post_container}>
-          <ScrollView>
-            <FullPost {...user_store.currently_viewing_post} />
+          <ScrollView style={styles.post_scroll_container}>
+            <PostTitle {...user_store.currently_viewing_post} />
+            <PostContent {...user_store.currently_viewing_post} />
+            <Replies {...user_store.currently_viewing_post} />
           </ScrollView>
         </WithFBLoginModalAvailable>
       );
