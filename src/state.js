@@ -68,22 +68,25 @@ export const bug_bounty_store = new function() {
   });
 }();
 
-import language_set from './language-set';
+import localization from './localization';
 
-const LANGUAGES = Object.keys(language_set);
+const LOCALES = Object.keys(localization);
 
-export const language_setting = new function() {
+export const language_setting_store = new function() {
   extendObservable(this, {
-    current_language: 'en',
-    current_language_set: computed(function() {
-      return language_set[this.current_language];
+    localization_index: 0,
+
+    locale: computed(function() {
+      return localization[LOCALES[this.localization_index]];
+    }),
+    current_language_name: computed(function() {
+      return this.locale.name;
     }),
   });
 
-  set_new_language = t =>
+  this.cycle_localization = () =>
     runInAction(() => {
-      if (LANGUAGES.includes(t) === false) throw new Error('Unknown language' + t);
-      else this.current_language = t;
+      this.localization_index = (this.localization_index + 1) % LOCALES.length;
     });
 }();
 
