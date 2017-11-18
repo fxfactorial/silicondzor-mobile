@@ -20,7 +20,7 @@ import { login_store, user_session_store, login_modal_store } from '../state';
 import credentials from 'silicondzor-mobile/credentials';
 
 const common_login_box = {
-  backgroundColor: 'blue',
+  backgroundColor: 'white',
   height: '80%',
   width: '80%',
 };
@@ -28,7 +28,6 @@ const common_login_box = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -74,6 +73,10 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     backgroundColor: 'purple',
+  },
+  logout_button: {
+    borderWidth: 1,
+    backgroundColor: 'red',
   },
 });
 
@@ -128,15 +131,28 @@ export const FBBasedLogin = observer(
     }
 
     logged_in_view() {
+      setTimeout(async () => {
+        await asyncAction(function*() {
+          login_modal_store.show = false;
+        })();
+      }, 1000 * 5);
+
       return (
-        <View>
-          <Text>Logged in view</Text>
+        <View style={styles.container}>
+          <View style={styles.login_box}>
+            <Text>Already Logged in</Text>
+
+            <Text style={styles.logout_button} onPress={this.do_logout}>
+              Logout
+            </Text>
+          </View>
         </View>
       );
     }
 
     render() {
       const { logged_in } = user_session_store;
+      console.log({ logged_in });
       const content = logged_in === false ? this.not_logged_in_view() : this.logged_in_view();
       return <Modal isVisible={login_modal_store.show}>{content}</Modal>;
     }
