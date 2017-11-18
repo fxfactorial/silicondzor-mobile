@@ -11,6 +11,7 @@ import {
   Image,
   ScrollView,
   Platform,
+  Switch,
 } from 'react-native';
 import { LinearGradient } from 'expo';
 import { Entypo } from '@expo/vector-icons';
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
   block_with_photo: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: '90%',
+    height: '70%',
   },
   rounded_profile: {
     justifyContent: 'center',
@@ -83,11 +84,14 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: '20%',
+    paddingHorizontal: PADDING_WIDTH_PERCENT_DOUBLE,
   },
   language_row_prompt: {
     fontSize: 14,
     height: 40,
+  },
+  emoji_text: {
+    fontSize: 20,
   },
 });
 
@@ -103,21 +107,42 @@ const preferences_banner = (
   </View>
 );
 
-const preference_row = (action, left, right) => (
-  <TouchableOpacity onPress={action}>
+const preference_row = (action, left, right) =>
+  action !== null ? (
+    <TouchableOpacity onPress={action}>
+      <View style={styles.row}>
+        {left}
+        {right}
+      </View>
+    </TouchableOpacity>
+  ) : (
     <View style={styles.row}>
       {left}
       {right}
     </View>
-  </TouchableOpacity>
-);
+  );
 
 const language_change_row = preference_row(
   lang_store.cycle_localization,
   <Observer>
     {() => <Text style={styles.language_row_prompt}>{lang_store.locale.language}</Text>}
   </Observer>,
-  <Observer>{() => <Text>{lang_store.locale.emoji_flag}</Text>}</Observer>
+  <Observer>{() => <Text style={styles.emoji_text}>{lang_store.locale.emoji_flag}</Text>}</Observer>
+);
+
+const push_notifications_row = preference_row(
+  null,
+  <Observer>
+    {() => <Text style={styles.language_row_prompt}>{lang_store.locale.push_notification}</Text>}
+  </Observer>,
+  <Observer>
+    {() => (
+      <Switch
+        onValueChange={user_session_store.toggle_push_notif}
+        value={user_session_store.push_notifications_enabled}
+      />
+    )}
+  </Observer>
 );
 
 // Using class because might want to use animations
@@ -166,6 +191,7 @@ export default observer(
             <View style={styles.with_shadow}>
               {preferences_banner}
               {language_change_row}
+              {push_notifications_row}
             </View>
           </ScrollView>
         </WithFBLoginModalAvailable>
