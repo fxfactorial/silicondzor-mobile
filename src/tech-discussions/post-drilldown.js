@@ -5,7 +5,7 @@ import { observer, Observer } from 'mobx-react/native';
 import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
-import { user_session_store as user_store } from '../state';
+import { user_session_store as user_store, language_setting_store as lang_store } from '../state';
 import { VOTE_ELEMENTS, WithFBLoginModalAvailable, vote_with_action } from '../common';
 import { PADDING_WIDTH_PERCENT } from '../styles';
 import { upvote as upvote_query, downvote as downvote_query } from '../query';
@@ -21,7 +21,11 @@ const styles = StyleSheet.create({
     // color: 'orange',
   },
   full_post: {
-    //
+    backgroundColor: 'red',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: PADDING_WIDTH_PERCENT,
   },
   just_row: {
     backgroundColor: 'red',
@@ -33,16 +37,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  post_title: {
+    fontSize: 18,
+  },
+  post_author: {
+    fontSize: 10,
+    textAlign: 'right',
+  },
 });
-
-const with_votes_title = store =>
-  `${store.currently_viewing_post.upvotes} upvotes ${
-    store.currently_viewing_post.downvotes
-  } downvotes`;
 
 const headerTitle = (
   <Observer>
-    {() => <Text style={styles.current_post_title}>{with_votes_title(user_store)}</Text>}
+    {() => {
+      const with_votes_title = store =>
+        `${store.currently_viewing_post.upvotes} ${lang_store.locale.up} ${
+          store.currently_viewing_post.downvotes
+        } down`;
+
+      return <Text style={styles.current_post_title}>{with_votes_title(user_store)}</Text>;
+    }}
   </Observer>
 );
 
@@ -70,7 +83,10 @@ const FullPost = ({
   return (
     <View style={styles.full_post}>
       {top_row}
-      {}
+      <View>
+        <Text style={styles.post_title}>{title}</Text>
+        <Text style={styles.post_author}>{author_name}</Text>
+      </View>
     </View>
   );
 };

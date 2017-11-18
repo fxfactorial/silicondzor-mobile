@@ -1,6 +1,6 @@
 // @flow
 
-import { extendObservable, when, runInAction, computed } from 'mobx';
+import { extendObservable, when, runInAction, computed, observable } from 'mobx';
 
 export const login_modal_store = new function() {
   extendObservable(this, {
@@ -37,6 +37,7 @@ export const user_session_store = new function() {
       post_id: '3434341',
       replies: [],
     },
+    post_cache: observable.map({}),
     push_notifications_enabled: true,
     logged_in: true,
     name: 'Edgar Aroutiounian',

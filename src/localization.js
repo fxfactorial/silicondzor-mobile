@@ -9,6 +9,8 @@ export default {
     settings: 'Settings',
     push_notification: 'Push Notifications',
     language: 'Language',
+    up: 'up',
+    down: 'down',
   },
   am: {
     jobs_board: 'Jobs board',
@@ -18,6 +20,8 @@ export default {
     settings: 'կարգավորումները',
     push_notification: 'Push Notifications-hy',
     language: 'լեզու',
+    up: 'up-am',
+    down: 'down-am',
   },
   ru: {
     jobs_board: 'Jobs board',
@@ -27,5 +31,7 @@ export default {
     settings: 'настройки',
     push_notification: 'Push Notifications-Ru',
     language: 'язык',
+    up: 'up-ru',
+    down: 'down-ru',
   },
 };
