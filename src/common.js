@@ -20,9 +20,13 @@ export const SEARCH_TAB_ICON = (
 
 export const EVENTS_TAB_ICON = <Entypo name={'calendar'} size={24} />;
 
+export const GENERIC_BOARD_TAB_ICON = <Entypo name={'blackboard'} size={24} />;
+
 export const WithFBLoginModalAvailable = p => (
   <View {...p}>
     <FBBasedLogin />
     {p.children}
   </View>
 );
+
+export const row_separator = <View style={{ height: PADDING_WIDTH_PERCENT_DOUBLE }} />;

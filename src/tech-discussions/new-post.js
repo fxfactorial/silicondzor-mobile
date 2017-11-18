@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { observer } from 'mobx-react/native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { WithFBLoginModalAvailable } from '../common-components';
+import { WithFBLoginModalAvailable } from '../common';
 
 import { new_discussion_store } from '../state';
 import { PADDING_WIDTH_PERCENT } from '../styles';

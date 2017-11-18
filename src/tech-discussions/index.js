@@ -3,12 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import { TabNavigator } from 'react-navigation';
 
-import {
-  NEWS_TAB_ICON,
-  POST_TAB_ICON,
-  SEARCH_TAB_ICON,
-  DrawerIconOpener,
-} from '../common-components';
+import { NEWS_TAB_ICON, POST_TAB_ICON, SEARCH_TAB_ICON, DrawerIconOpener } from '../common';
 import { login_modal_store } from '../state';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from '../styles';
 

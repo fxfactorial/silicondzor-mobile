@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, TextInput, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { observer } from 'mobx-react/native';
 
-import { WithFBLoginModalAvailable } from '../common-components';
+import { WithFBLoginModalAvailable } from '../common';
 import { PADDING_WIDTH_PERCENT } from '../styles';
 import { search_discussions_store } from '../state';
 

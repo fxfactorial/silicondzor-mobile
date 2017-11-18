@@ -1,7 +1,7 @@
 import { TabNavigator } from 'react-navigation';
 
 import events_table from './events';
-import { POST_TAB_ICON, EVENTS_TAB_ICON } from '../common-components';
+import { POST_TAB_ICON, EVENTS_TAB_ICON } from '../common';
 
 export default TabNavigator({
   Events: {

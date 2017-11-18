@@ -1,13 +1,19 @@
 import React from 'react';
 import { observer } from 'mobx-react/native';
-import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Animated,
+} from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
-import { WithFBLoginModalAvailable } from '../common-components';
+import { WithFBLoginModalAvailable, row_separator } from '../common';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from 'silicondzor-mobile/src/styles';
 import dummy_data from 'silicondzor-mobile/dev/dummy-data';
-
-const row_separator = <View style={{ height: PADDING_WIDTH_PERCENT_DOUBLE }} />;
 
 const styles = StyleSheet.create({
   posting_container: {
@@ -22,18 +28,36 @@ const styles = StyleSheet.create({
   },
 });
 
+const PRESS_EXPAND_DELAY = 2000;
+
 class PostingRow extends React.Component {
+  on_long_press_expand() {
+    // Implement animation that expand the row with a bounce
+  }
+
+  on_short_press_navigate = () => {
+    const { navigate } = this.props;
+    // Give the ID as parameter so story can be queryied for, not
+    // necessary to be logged in
+    navigate('post_discussion');
+  };
+
   render() {
-    const { title, upvotes, downvotes, id, navigate } = this.props;
+    const { title, upvotes, downvotes, id } = this.props;
     return (
-      <View style={styles.post_row}>
-        <Text onPress={() => navigate('post_discussion')}>
-          {title}
-          {upvotes}
-          {downvotes}
-          {id}
-        </Text>
-      </View>
+      <TouchableWithoutFeedback
+        delayLongPress={2000}
+        onLongPress={this.on_long_press_expand}
+        onPress={this.on_short_press_navigate}>
+        <View style={styles.post_row}>
+          <Text>
+            {title}
+            {upvotes}
+            {downvotes}
+            {id}
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }

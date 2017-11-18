@@ -1,5 +1,7 @@
 import React from 'react';
 import {
+  NetInfo,
+  Alert,
   Text,
   TextInput,
   View,
@@ -15,6 +17,7 @@ import { asyncAction } from 'mobx-utils';
 
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_4X } from '../styles';
 import { login_store, user_session_store, login_modal_store } from '../state';
+import credentials from 'silicondzor-mobile/credentials';
 
 const common_login_box = {
   backgroundColor: 'blue',
@@ -84,22 +87,6 @@ export const FBBasedLogin = observer(
         <View style={styles.container}>
           <View style={styles.login_box}>
             <Text style={styles.login_text}>Silicondzor</Text>
-
-            <View style={styles.inputs}>
-              <View style={styles.inputs_spaced}>
-                <TextInput
-                  style={styles.login_input}
-                  onChangeText={login_store.set_login}
-                  value={login_store.login}
-                />
-                <TextInput
-                  style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                  onChangeText={login_store.set_password}
-                  value={login_store.password}
-                />
-              </View>
-            </View>
-
             <Text onPress={this.do_login} style={[styles.login_button, { backgroundColor }]}>
               Login
             </Text>
@@ -109,10 +96,35 @@ export const FBBasedLogin = observer(
     }
 
     async do_login() {
-      // const result = await Facebook.logInWithReadPermissionsAsync()
-      await asyncAction(function*() {
-        login_modal_store.show = false;
-      })();
+      const is_connected = __DEV__ ? true : await NetInfo.isConnected.fetch();
+      console.log(is_connected);
+      if (is_connected) {
+        const { type, token } = __DEV__
+          ? { type: 'success', token: credentials.dev.fbToken }
+          : await Facebook.logInWithReadPermissionsAsync(credentials.fb.appId);
+
+        if (type === 'success') {
+          const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
+          const body = await response.json();
+
+          await asyncAction(function*() {
+            user_session_store.fb_token = token;
+            user_session_store.logged_in = true;
+            login_modal_store.show = false;
+          })();
+
+          // console.log(body);
+          // 551135273 is Liz, 360745994365514 is Edgar
+          const user = 551135273;
+          const resp = await fetch(
+            `https://graph.facebook.com/v2.11/${user}?fields=id,name,picture&access_token=${token}`
+          );
+          const b = await resp.json();
+          console.log(b);
+        }
+      } else {
+        // Tell user something that we need internet access
+      }
     }
 
     logged_in_view() {

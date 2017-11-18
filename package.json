@@ -9,15 +9,18 @@
     "start": "./node_modules/.bin/exp start --offline",
     "ios": "./node_modules/.bin/exp ios --offline",
     "android": "./node_modules/.bin/exp ios --offline",
-    "ios-build": "EXPO_LOCAL=1 EXPO_DEBUG=true /Users/Edgar/.yarn/bin/exp build:ios --local-auth-flow"
+    "pub": "EXPO_LOCAL=1 EXPO_DEBUG=true ./node_modules/.bin/exp publish",
+    "ios-build": "EXPO_LOCAL=1 EXPO_DEBUG=true node /Users/Edgar/universe/dev/exp/bin/exp.js build:ios --local-auth-flow"
   },
   "dependencies": {
+    "date-fns": "^1.29.0",
     "expo": "^22.0.0",
     "firebase": "^4.6.0",
     "mobx": "^3.3.1",
     "mobx-react": "^4.3.3",
     "mobx-state-tree": "^1.1.0",
     "mobx-utils": "^3.2.1",
+    "querystring": "^0.2.0",
     "react": "16.0.0-beta.5",
     "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.1.tar.gz",
     "react-native-datepicker": "^1.6.0",
