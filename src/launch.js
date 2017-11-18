@@ -7,7 +7,7 @@ import { DrawerNavigator } from 'react-navigation';
 import tech_discussions from './tech-discussions';
 import tech_events from './tech-events';
 import bug_bounty_board from './bug-bounty-board';
-import jobs_board from './jobs-board/board.js';
+import jobs_board from './jobs-board';
 
 const open_right = (
   <TouchableOpacity onPress={login_modal_store.toggle_show}>

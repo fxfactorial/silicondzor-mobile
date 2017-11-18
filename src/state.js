@@ -68,6 +68,25 @@ export const bug_bounty_store = new function() {
   });
 }();
 
+import language_set from './language-set';
+
+const LANGUAGES = Object.keys(language_set);
+
+export const language_setting = new function() {
+  extendObservable(this, {
+    current_language: 'en',
+    current_language_set: computed(function() {
+      return language_set[this.current_language];
+    }),
+  });
+
+  set_new_language = t =>
+    runInAction(() => {
+      if (LANGUAGES.includes(t) === false) throw new Error('Unknown language' + t);
+      else this.current_language = t;
+    });
+}();
+
 export default {
   login_modal_store,
   login_store,
