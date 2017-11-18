@@ -9,23 +9,18 @@ import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from '../styles';
 
 import discussion from './discussion';
 import search from './search';
-import NewPost from './new-post';
+import newpost from './new-post';
 
 export default TabNavigator(
   {
-    News: {
-      screen: discussion,
-      navigationOptions: {
-        tabBarIcon: NEWS_TAB_ICON,
-      },
-    },
+    // News: {
+    //   screen: discussion,
+    //   navigationOptions: {
+    //     tabBarIcon: NEWS_TAB_ICON,
+    //   },
+    // },
     Post: {
-      screen: () => (
-        <NewPost
-          submit_handler={async () => console.log('Submitted!')}
-          new_post_title={lang_store.locale.new_post_title}
-        />
-      ),
+      screen: newpost,
       navigationOptions: {
         tabBarIcon: POST_TAB_ICON,
       },
