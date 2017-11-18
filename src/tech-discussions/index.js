@@ -4,12 +4,12 @@ import { Entypo } from '@expo/vector-icons';
 import { TabNavigator } from 'react-navigation';
 
 import { NEWS_TAB_ICON, POST_TAB_ICON, SEARCH_TAB_ICON, DrawerIconOpener } from '../common';
-import { login_modal_store } from '../state';
+import { login_modal_store, language_setting_store as lang_store } from '../state';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from '../styles';
 
 import discussion from './discussion';
 import search from './search';
-import new_post from './new-post';
+import NewPost from './new-post';
 
 export default TabNavigator(
   {
@@ -20,7 +20,12 @@ export default TabNavigator(
       },
     },
     Post: {
-      screen: new_post,
+      screen: () => (
+        <NewPost
+          submit_handler={async () => console.log('Submitted!')}
+          new_post_title={lang_store.locale.new_post_title}
+        />
+      ),
       navigationOptions: {
         tabBarIcon: POST_TAB_ICON,
       },

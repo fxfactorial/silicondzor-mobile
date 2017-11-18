@@ -12,6 +12,8 @@ export default {
     up: 'up',
     down: 'down',
     search: 'Search...',
+    be_kind_in_what_you_say: 'Be kind and respectful in what you say',
+    new_post_title: 'New Discussion',
   },
   am: {
     jobs_board: 'Jobs board',
@@ -24,6 +26,8 @@ export default {
     up: 'up-am',
     down: 'down-am',
     search: 'Search-am...',
+    be_kind_in_what_you_say: 'Be kind and respectful in what you say-am',
+    new_post_title: 'New Discussion-am',
   },
   ru: {
     jobs_board: 'Jobs board',
@@ -36,5 +40,7 @@ export default {
     up: 'up-ru',
     down: 'down-ru',
     search: 'Search-ru...',
+    be_kind_in_what_you_say: 'Be kind and respectful in what you say-ru',
+    new_post_title: 'New Discussion-ru',
   },
 };

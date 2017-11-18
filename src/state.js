@@ -39,7 +39,9 @@ export const user_session_store = new function() {
     },
     post_cache: observable.map({}),
     push_notifications_enabled: true,
-    logged_in: true,
+    logged_in: computed(function() {
+      return this.fb_token !== null;
+    }),
     name: 'Edgar Aroutiounian',
     user_fb_id: '360745994365514',
     user_fb_profile_picture_url:
