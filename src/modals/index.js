@@ -16,7 +16,7 @@ import { Facebook } from 'expo';
 import { asyncAction } from 'mobx-utils';
 
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_4X } from '../styles';
-import { login_store, user_session_store, login_modal_store } from '../state';
+import { login_store, user_session_store as user_store, login_modal_store } from '../state';
 import credentials from 'silicondzor-mobile/credentials';
 
 const common_login_box = {
@@ -100,30 +100,27 @@ export const FBBasedLogin = observer(
 
     async do_login() {
       const is_connected = __DEV__ ? true : await NetInfo.isConnected.fetch();
-      console.log(is_connected);
-      if (is_connected) {
+      if (is_connected && user_store.logged_in === false) {
         const { type, token } = __DEV__
           ? { type: 'success', token: credentials.dev.fbToken }
           : await Facebook.logInWithReadPermissionsAsync(credentials.fb.appId);
 
         if (type === 'success') {
           const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-          const body = await response.json();
-
-          await asyncAction(function*() {
-            user_session_store.fb_token = token;
-            user_session_store.logged_in = true;
-            login_modal_store.show = false;
-          })();
-
-          // console.log(body);
-          // 551135273 is Liz, 360745994365514 is Edgar
-          const user = 551135273;
+          const { id: currentUserId, name } = await response.json();
           const resp = await fetch(
-            `https://graph.facebook.com/v2.11/${user}?fields=id,name,picture&access_token=${token}`
+            `https://graph.facebook.com/v2.11/${
+              currentUserId
+            }?fields=id,name,picture&access_token=${token}`
           );
-          const b = await resp.json();
-          console.log(b);
+          await asyncAction(function*({ picture: { data } }) {
+            user_store.name = name;
+            user_store.user_fb_id = currentUserId;
+            user_store.fb_token = token;
+            user_store.logged_in = true;
+            login_modal_store.show = false;
+            user_store.user_fb_profile_picture_url = data.url;
+          })(await resp.json());
         }
       } else {
         // Tell user something that we need internet access
@@ -151,8 +148,7 @@ export const FBBasedLogin = observer(
     }
 
     render() {
-      const { logged_in } = user_session_store;
-      console.log({ logged_in });
+      const { logged_in } = user_store;
       const content = logged_in === false ? this.not_logged_in_view() : this.logged_in_view();
       return <Modal isVisible={login_modal_store.show}>{content}</Modal>;
     }

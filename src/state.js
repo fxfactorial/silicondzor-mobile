@@ -21,6 +21,7 @@ export const user_session_store = new function() {
     currently_viewing_post: {},
     name: null,
     user_fb_id: null,
+    user_fb_profile_picture_url: null,
   });
 }();
 
