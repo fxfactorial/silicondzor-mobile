@@ -99,14 +99,20 @@ export const search_discussions_store = new function() {
     });
 }();
 
-export const new_discussion_store = new function() {
+function basic_store() {
   extendObservable(this, {
     title: '',
     body: '',
   });
   this.set_title = (t: string) => runInAction(() => (this.title = t));
   this.set_body = (t: string) => runInAction(() => (this.body = t));
-}();
+}
+
+// New store for each new post screen
+export const new_discussion_store = new class extends basic_store {}();
+export const new_tech_event_store = new class extends basic_store {}();
+export const new_bug_bounty_store = new class extends basic_store {}();
+export const new_job_board_store = new class extends basic_store {}();
 
 // $FlowFixMe;
 import { bug_bounty_dummy_result } from 'silicondzor-mobile/dev/dummy-data';
@@ -138,11 +144,3 @@ export const language_setting_store = new function() {
       this.localization_index = (this.localization_index + 1) % LOCALES.length;
     });
 }();
-
-export default {
-  login_modal_store,
-  login_store,
-  user_session_store,
-  search_discussions_store,
-  new_discussion_store,
-};

@@ -13,12 +13,12 @@ import newpost from './new-post';
 
 export default TabNavigator(
   {
-    // News: {
-    //   screen: discussion,
-    //   navigationOptions: {
-    //     tabBarIcon: NEWS_TAB_ICON,
-    //   },
-    // },
+    News: {
+      screen: discussion,
+      navigationOptions: {
+        tabBarIcon: NEWS_TAB_ICON,
+      },
+    },
     Post: {
       screen: newpost,
       navigationOptions: {

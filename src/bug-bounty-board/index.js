@@ -1,11 +1,15 @@
 import React from 'react';
 import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 import { TabNavigator } from 'react-navigation';
+import { Observer } from 'mobx-react/native';
 
 import { POST_TAB_ICON, GENERIC_BOARD_TAB_ICON, DrawerIconOpener } from '../common';
 import { PADDING_WIDTH_PERCENT } from '../styles';
+import { language_setting_store as lang_store } from '../state';
 import Board from './board';
 import Post from './post';
+
+const headerTitle = <Observer>{() => <Text>{lang_store.locale.bug_bounty}</Text>}</Observer>;
 
 export default TabNavigator(
   {
@@ -26,8 +30,7 @@ export default TabNavigator(
     navigationOptions: ({ navigation }) => {
       return {
         tabBarLabel: navigation.state.routeName,
-        // Should be a component so we can say total number of bounties
-        headerTitle: 'Bug Bounty',
+        headerTitle,
         headerLeft: DrawerIconOpener(navigation),
         headerStyle: { paddingHorizontal: PADDING_WIDTH_PERCENT },
       };

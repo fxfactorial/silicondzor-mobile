@@ -132,26 +132,29 @@ export const NewPost = observer(
   class extends React.Component {
     state = { error_msg: null };
 
+    // static propTypes = {
+    // }
+
     try_submit = async () => {
       const result = await this.props.submit_handler();
       console.log(result);
     };
 
     render() {
-      const { new_post_title } = this.props;
+      const { new_post_title, store } = this.props;
       return (
         <WithFBLoginModalAvailable style={styles.new_post_container}>
           <FormLabel>{new_post_title}</FormLabel>
           <FormInput
             maxLength={140}
-            value={new_discussion_store.title}
-            onChangeText={new_discussion_store.set_title}
+            value={store.title}
+            onChangeText={store.set_title}
             style={styles.post_title_input}
           />
           <FormValidationMessage>{this.state.error_msg}</FormValidationMessage>
           <View style={styles.post_content_block}>
             {post_prompt}
-            <InputWithEffect />
+            <InputWithEffect store={store} />
             <Button
               disabled={user_store.logged_in}
               onPress={this.try_submit}
@@ -168,13 +171,14 @@ export const NewPost = observer(
 const InputWithEffect = observer(
   class extends React.Component {
     render() {
+      const { store } = this.props;
       return (
         <Animated.View style={styles.post_content_input_container}>
           <TextInput
             multiline={true}
-            onChangeText={new_discussion_store.set_body}
+            onChangeText={store.set_body}
             style={[styles.post_content]}
-            value={new_discussion_store.body}
+            value={store.body}
           />
         </Animated.View>
       );

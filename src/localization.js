@@ -14,6 +14,11 @@ export default {
     search: 'Search...',
     be_kind_in_what_you_say: 'Be kind and respectful in what you say',
     new_post_title: 'New Discussion',
+    new_tech_event_title: 'New Tech Event',
+    new_tech_bug_bounty: 'New bug bounty',
+    new_tech_job_posting: 'New Job Posting',
+    bug_bounty: 'Bug Bounty',
+    jobs_board: 'Jobs',
   },
   am: {
     jobs_board: 'Jobs board',
@@ -28,6 +33,8 @@ export default {
     search: 'Search-am...',
     be_kind_in_what_you_say: 'Be kind and respectful in what you say-am',
     new_post_title: 'New Discussion-am',
+    bug_bounty: 'Bug Bounty-AM',
+    jobs_board: 'Jobs-am',
   },
   ru: {
     jobs_board: 'Jobs board',
@@ -42,5 +49,7 @@ export default {
     search: 'Search-ru...',
     be_kind_in_what_you_say: 'Be kind and respectful in what you say-ru',
     new_post_title: 'New Discussion-ru',
+    bug_bounty: 'Bug Bounty-Ru',
+    jobs_board: 'Jobs-ru',
   },
 };

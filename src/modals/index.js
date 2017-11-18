@@ -119,7 +119,6 @@ export const FBBasedLogin = observer(
             user_store.name = name;
             user_store.user_fb_id = currentUserId;
             user_store.fb_token = token;
-            user_store.logged_in = true;
             login_modal_store.show = false;
             user_store.user_fb_profile_picture_url = data.url;
           })(await resp.json());
