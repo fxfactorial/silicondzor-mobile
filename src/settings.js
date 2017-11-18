@@ -10,6 +10,7 @@ import {
   Animated,
   Image,
   ScrollView,
+  Platform,
 } from 'react-native';
 import { LinearGradient } from 'expo';
 import { Entypo } from '@expo/vector-icons';
@@ -29,10 +30,13 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: PADDING_WIDTH_PERCENT,
   },
+  scroll_container: {
+    //
+  },
   block_with_photo: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: '130%',
+    height: '90%',
   },
   rounded_profile: {
     justifyContent: 'center',
@@ -56,6 +60,35 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 24,
   },
+  with_shadow:
+    Platform.OS === 'ios'
+      ? {
+          height: '300%',
+          paddingHorizontal: PADDING_WIDTH_PERCENT,
+          backgroundColor: 'white',
+          shadowColor: '#646464',
+          shadowOpacity: 0.5,
+          shadowOffset: { width: 2, height: 2 },
+        }
+      : {},
+  pref_banner: {
+    paddingVertical: PADDING_WIDTH_PERCENT,
+  },
+  pref_banner_text: {
+    fontSize: 22,
+    fontWeight: '200',
+    textAlign: 'center',
+    fontStyle: 'italic',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: '20%',
+  },
+  language_row_prompt: {
+    fontSize: 14,
+    height: 40,
+  },
 });
 
 const title = (
@@ -63,6 +96,29 @@ const title = (
 );
 
 const clr_range = ['#4c669f', '#3b5998', '#192f6a'];
+
+const preferences_banner = (
+  <View style={styles.pref_banner}>
+    <Text style={styles.pref_banner_text}>Preferences save on change</Text>
+  </View>
+);
+
+const preference_row = (action, left, right) => (
+  <TouchableOpacity onPress={action}>
+    <View style={styles.row}>
+      {left}
+      {right}
+    </View>
+  </TouchableOpacity>
+);
+
+const language_change_row = preference_row(
+  lang_store.cycle_localization,
+  <Observer>
+    {() => <Text style={styles.language_row_prompt}>{lang_store.locale.language}</Text>}
+  </Observer>,
+  <Observer>{() => <Text>{lang_store.locale.emoji_flag}</Text>}</Observer>
+);
 
 // Using class because might want to use animations
 export default observer(
@@ -84,6 +140,7 @@ export default observer(
     }
 
     user_name() {
+      // Must keep at least empty string to keep height correct.
       const message = user_session_store.logged_in ? user_session_store.name : ' ';
       return <Text style={styles.name_text}>{message}</Text>;
     }
@@ -99,14 +156,17 @@ export default observer(
       const user_text = this.user_name();
       return (
         <WithFBLoginModalAvailable style={styles.settings_container}>
-          <ScrollView>
+          <ScrollView style={styles.scroll_container}>
             <LinearGradient style={styles.block_with_photo} colors={clr_range}>
               <View style={styles.photo_with_text}>
                 <View style={styles.rounded_profile}>{circle_view}</View>
                 {user_text}
               </View>
             </LinearGradient>
-            <Text>More</Text>
+            <View style={styles.with_shadow}>
+              {preferences_banner}
+              {language_change_row}
+            </View>
           </ScrollView>
         </WithFBLoginModalAvailable>
       );

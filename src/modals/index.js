@@ -104,7 +104,6 @@ export const FBBasedLogin = observer(
         const { type, token } = __DEV__
           ? { type: 'success', token: credentials.dev.fbToken }
           : await Facebook.logInWithReadPermissionsAsync(credentials.fb.appId);
-
         if (type === 'success') {
           const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
           const { id: currentUserId, name } = await response.json();
@@ -114,6 +113,9 @@ export const FBBasedLogin = observer(
             }?fields=id,name,picture&access_token=${token}`
           );
           await asyncAction(function*({ picture: { data } }) {
+            if (__DEV__) {
+              console.log({ currentUserId, name, data });
+            }
             user_store.name = name;
             user_store.user_fb_id = currentUserId;
             user_store.fb_token = token;
@@ -125,6 +127,10 @@ export const FBBasedLogin = observer(
       } else {
         // Tell user something that we need internet access
       }
+    }
+
+    do_logout() {
+      // clear out the user
     }
 
     logged_in_view() {

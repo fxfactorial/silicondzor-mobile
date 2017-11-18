@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import { Entypo, Octicons } from '@expo/vector-icons';
+import { observer, Observer } from 'mobx-react/native';
+
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from './styles';
 import { FBBasedLogin } from './modals';
 
