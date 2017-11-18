@@ -3,6 +3,7 @@ import flags from './flags';
 export default {
   en: {
     silicondzor: 'Silicondzor',
+    tech_events: 'Tech Events',
     jobs_board: 'Jobs board',
     discussion: 'Discussions',
     emoji_flag: flags.en,
@@ -24,6 +25,7 @@ export default {
   am: {
     jobs_board: 'Jobs board',
     discussion: 'Discussions',
+    tech_events: 'Tech Events-am',
     emoji_flag: flags.hy,
     name: 'Armenian',
     settings: 'կարգավորումները',
@@ -41,6 +43,7 @@ export default {
   ru: {
     jobs_board: 'Jobs board',
     discussion: 'Discussions',
+    tech_events: 'Tech Events-ru',
     emoji_flag: flags.ru,
     name: 'Russian',
     settings: 'настройки',

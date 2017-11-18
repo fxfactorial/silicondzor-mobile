@@ -14,13 +14,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const headerTitle = <Text style={styles.header_style}>Tech Events in Armenia</Text>;
-
 // Show the events from today and scrolling downward
 export default observer(
   class extends React.Component {
     static navigationOptions = ({ navigation }) => ({
-      headerTitle,
       headerLeft: DrawerIconOpener(navigation),
       headerStyle: { paddingHorizontal: PADDING_WIDTH_PERCENT },
     });
