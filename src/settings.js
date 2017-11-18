@@ -21,10 +21,6 @@ import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from 'silicondzor
 import { user_session_store, language_setting_store as lang_store } from './state';
 import { DrawerIconOpener } from './common';
 import language_set from './language-set';
-// <Text>Settings page, use a button to open modal to login</Text>
-// <Text>{lang_store.locale.emoji_flag}</Text>
-// <Text>Current language {lang_store.current_language_name}</Text>
-// <Text onPress={lang_store.cycle_localization}>Toggle Language</Text>
 
 const styles = StyleSheet.create({
   settings_container: {

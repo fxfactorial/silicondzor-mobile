@@ -6,6 +6,8 @@ import { observer, Observer } from 'mobx-react/native';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from './styles';
 import { FBBasedLogin } from './modals';
 
+const styles = StyleSheet.create({});
+
 export const DrawerIconOpener = ({ navigate }) => (
   <TouchableOpacity onPress={() => navigate('DrawerOpen')}>
     <Entypo name={'code'} size={24} />
@@ -32,3 +34,16 @@ export const WithFBLoginModalAvailable = p => (
 );
 
 export const row_separator = <View style={{ height: PADDING_WIDTH_PERCENT_DOUBLE }} />;
+
+export const VOTE_ELEMENTS = {
+  upvote: <Entypo name={'chevron-up'} size={24} />,
+  downvote: <Entypo name={'chevron-down'} size={24} />,
+};
+
+export const vote_with_action = (up_arrow, styles = {}, action = null) => (
+  <TouchableOpacity onPress={action}>
+    {React.cloneElement(up_arrow ? VOTE_ELEMENTS.upvote : VOTE_ELEMENTS.downvote, {
+      style: { ...styles },
+    })}
+  </TouchableOpacity>
+);

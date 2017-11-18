@@ -1,10 +1,14 @@
 [ignore]
 .*/node_modules
 
+.*/node_modules/react-navigation/.*/__tests__/.*
+
 [include]
-./src/*
+./node_modules/react-navigation/src/TypeDefinition.js
+.*/node_modules/mobx/lib
 
 [libs]
+flow-typed
 
 [lints]
 
