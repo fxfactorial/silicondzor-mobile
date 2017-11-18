@@ -31,6 +31,8 @@
     "react-navigation": "^1.0.0-beta.19"
   },
   "devDependencies": {
-    "exp": "^45.1.0"
+    "exp": "^45.1.0",
+    "flow": "^0.2.3",
+    "flow-bin": "^0.59.0"
   }
 }
