@@ -7,7 +7,7 @@ import { Entypo } from '@expo/vector-icons';
 import { Badge } from 'react-native-elements';
 
 import { user_session_store as user_store, language_setting_store as lang_store } from '../state';
-import { VOTE_ELEMENTS, WithFBLoginModalAvailable, vote_with_action } from '../common';
+import { VOTE_ELEMENTS, WithFBLoginModalAvailable, vote_with_action, post_title } from '../common';
 import { PADDING_WIDTH_PERCENT } from '../styles';
 import { upvote as upvote_query, downvote as downvote_query } from '../query';
 
@@ -28,12 +28,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  post_title: {
-    fontSize: 18,
-  },
-  post_author: {
-    fontSize: 11,
-  },
   post_content_container: {
     backgroundColor: 'purple',
     minHeight: '30%',
@@ -49,7 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'orange',
   },
   replies_container: {
-    backgroundColor: 'blue',
+    backgroundColor: 'aliceblue',
     flex: 1,
     minHeight: '100%',
   },
@@ -92,10 +86,7 @@ const PostTitle = ({
   return (
     <View style={styles.full_post}>
       {top_row}
-      <View>
-        <Text style={styles.post_title}>{title}</Text>
-        <Badge textStyle={styles.post_author} value={author_name} />
-      </View>
+      {post_title(title, author_name)}
     </View>
   );
 };
