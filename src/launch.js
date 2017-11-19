@@ -19,15 +19,18 @@ import {
   user_session_store as user_store,
 } from './state';
 import colors from './colors';
-import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from './styles';
+import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE, height } from './styles';
 import { row_separator, FontText } from './common';
+
+const ROWS_BLOCK_HEIGHT = Math.floor(height * 0.4);
 
 const styles = StyleSheet.create({
   custom_drawer_container: {
     flex: 1,
-    height: '100%',
+    height,
   },
   custom_drawer_content: {
+    height,
     flex: 1,
     backgroundColor: 'transparent',
     paddingLeft: '2%',
@@ -56,6 +59,8 @@ const styles = StyleSheet.create({
   nav_row_block: { paddingRight: '10%' },
   nav_screen_name: { color: 'aliceblue', fontSize: 20 },
   logged_in_name: { color: 'white' },
+  rows_block: { minHeight: '50%', maxHeight: '70%' },
+  code_icon: { color: colors.drawer_component.start, opacity: 0.9 },
 });
 
 const obs = (
@@ -106,23 +111,27 @@ const drawer_component = ({ navigation }) => {
   const { start, end } = colors.drawer_component;
   return (
     <LinearGradient style={styles.custom_drawer_container} colors={[start, end]}>
-      <View style={styles.custom_drawer_content}>
-        {minispacer}
-        {top_drawer_banner()}
-        {spacer}
-        {row('tech_discussions', () => navigate('tech_discussions'))}
-        {row('tech_events', () => navigate('tech_events'))}
-        {row('bug_bounty_board', () => navigate('bug_bounty_board'))}
-        {row('jobs_board', () => navigate('jobs_board'))}
-        {row('settings', () => navigate('settings'))}
-      </View>
+      <ScrollView>
+        <View style={styles.custom_drawer_content}>
+          {minispacer}
+          {top_drawer_banner()}
+          {spacer}
+          <View style={styles.rows_block}>
+            {row('tech_discussions', () => navigate('tech_discussions'))}
+            {row('tech_events', () => navigate('tech_events'))}
+            {row('bug_bounty_board', () => navigate('bug_bounty_board'))}
+            {row('jobs_board', () => navigate('jobs_board'))}
+            {row('settings', () => navigate('settings'))}
+          </View>
+        </View>
+      </ScrollView>
     </LinearGradient>
   );
 };
 
 const open_right = (
   <TouchableOpacity onPress={login_modal_store.toggle_show}>
-    <Entypo name={'login'} size={24} />
+    <Entypo style={styles.code_icon} name={'login'} size={24} />
   </TouchableOpacity>
 );
 

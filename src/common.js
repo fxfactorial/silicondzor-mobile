@@ -19,6 +19,7 @@ import {
   Button,
 } from 'react-native-elements';
 
+import colors from './colors';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from './styles';
 import { FBBasedLogin } from './modals';
 import {
@@ -73,11 +74,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowOffset: { width: 2, height: 2 },
   },
+  code_icon: { color: colors.drawer_component.start, opacity: 0.9 },
 });
 
 export const DrawerIconOpener = ({ navigate }) => (
   <TouchableOpacity onPress={() => navigate('DrawerOpen')}>
-    <Entypo name={'code'} size={24} />
+    <Entypo style={styles.code_icon} name={'code'} size={24} />
   </TouchableOpacity>
 );
 
