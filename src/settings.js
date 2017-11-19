@@ -20,7 +20,6 @@ import { WithFBLoginModalAvailable } from './common';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from 'silicondzor-mobile/src/styles';
 import { user_session_store, language_setting_store as lang_store } from './state';
 import { DrawerIconOpener } from './common';
-import language_set from './language-set';
 
 const styles = StyleSheet.create({
   settings_container: {
