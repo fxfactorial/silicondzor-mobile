@@ -19,7 +19,7 @@ import {
   user_session_store as user_store,
 } from './state';
 import colors from './colors';
-import { PADDING_WIDTH_PERCENT } from './styles';
+import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from './styles';
 import { row_separator } from './common';
 
 const { theme: { c, d, e } } = colors;
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    paddingHorizontal: PADDING_WIDTH_PERCENT_DOUBLE,
   },
   top_row_name_block: {
     paddingRight: PADDING_WIDTH_PERCENT,
@@ -49,6 +50,10 @@ const styles = StyleSheet.create({
   spacer: {
     height: '10%',
   },
+  mini_spacer: {
+    height: '5%',
+  },
+  nav_row_block: { paddingRight: '15%' },
 });
 
 const obs = (
@@ -70,8 +75,24 @@ const top_drawer_banner = () => (
 );
 
 const spacer = <View style={styles.spacer} />;
+const minispacer = <View style={styles.mini_spacer} />;
 
-const row = (prompt, action) => <TouchableOpacity onPress={action}>{prompt}</TouchableOpacity>;
+// Need to do logic of when app signs in, we record the time and then
+// we register the login time with the DB. Then we compare all the
+// items posted SINCE we logged in, say new ones
+
+const row = (keyname, prompt, action) => (
+  <TouchableOpacity onPress={action}>
+    <View style={styles.nav_row_block}>
+      <View style={[styles.top_row]}>
+        <Text>first</Text>
+        <Text>Another</Text>
+      </View>
+      {row_separator}
+      {minispacer}
+    </View>
+  </TouchableOpacity>
+);
 
 const drawer_component = ({ navigation }) => {
   const { navigate } = navigation;
@@ -80,8 +101,8 @@ const drawer_component = ({ navigation }) => {
       <View style={styles.custom_drawer_content}>
         {top_drawer_banner()}
         {spacer}
-
-        {row_separator}
+        {row()}
+        {row()}
       </View>
     </LinearGradient>
   );
