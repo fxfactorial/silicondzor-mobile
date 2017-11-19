@@ -19,7 +19,6 @@ export default observer(
   class extends React.Component {
     static navigationOptions = ({ navigation }) => ({
       headerLeft: DrawerIconOpener(navigation),
-      headerStyle: { paddingHorizontal: PADDING_WIDTH_PERCENT },
     });
 
     render() {

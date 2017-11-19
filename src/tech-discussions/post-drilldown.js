@@ -109,7 +109,6 @@ export default observer(
   class extends React.Component<null> {
     static navigationOptions = ({ navigation }) => ({
       headerTitle,
-      headerStyle: { paddingHorizontal: PADDING_WIDTH_PERCENT },
     });
 
     render() {

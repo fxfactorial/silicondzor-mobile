@@ -146,7 +146,6 @@ export default observer(
     static navigationOptions = ({ navigation }) => ({
       headerTitle: title,
       headerLeft: DrawerIconOpener(navigation),
-      headerStyle: { paddingHorizontal: PADDING_WIDTH_PERCENT },
     });
 
     signed_in_view() {

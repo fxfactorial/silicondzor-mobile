@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const PRESS_EXPAND_DELAY = 1000;
+const PRESS_EXPAND_DELAY = 500;
 
 const sep = React.cloneElement(row_separator, { style: { minWidth: '90%', height: 2 } });
 
@@ -71,7 +71,8 @@ class Card extends React.Component {
   };
 
   on_short_press_navigate = () => {
-    console.log('Short press');
+    const { navigate } = this.props;
+    navigate('post_discussion');
   };
 
   render() {
@@ -86,7 +87,7 @@ class Card extends React.Component {
         </View>
         {sep}
         <TouchableWithoutFeedback
-          delayLongPress={2000}
+          delayLongPress={PRESS_EXPAND_DELAY}
           onLongPress={this.on_long_press_expand}
           onPress={this.on_short_press_navigate}>
           <Animated.View style={[{ height: this.initial_height }]}>

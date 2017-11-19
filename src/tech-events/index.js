@@ -40,7 +40,6 @@ export default TabNavigator(
         headerTitle,
         tabBarLabel: navigation.state.routeName,
         headerLeft: DrawerIconOpener(navigation),
-        headerStyle: { paddingHorizontal: PADDING_WIDTH_PERCENT },
       };
     },
     tabBarOptions: {
