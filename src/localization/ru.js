@@ -18,10 +18,10 @@ export default {
   jobs_board: 'Jobs-ru',
   silicondzor: 'Silicondzor-RU',
   screens: {
-    tech_discussions: 'Discussions',
-    tech_events: 'Upcoming events',
-    bug_bounty_board: 'Bug Bounties',
-    jobs_board: 'Jobs',
-    settings: 'Settings',
+    tech_discussions: 'Discussions-ru',
+    tech_events: 'Upcoming events-ru',
+    bug_bounty_board: 'Bug Bounties-ru',
+    jobs_board: 'Jobs-ru',
+    settings: 'настройки',
   },
 };

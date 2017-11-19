@@ -81,19 +81,15 @@ const minispacer = <View style={styles.mini_spacer} />;
 // Need to do logic of when app signs in, we record the time and then
 // we register the login time with the DB. Then we compare all the
 // items posted SINCE we logged in, say new ones
-
-const row = (screen_name, action) => (
+const row = (name, action) => (
   <TouchableOpacity onPress={action}>
     <View style={styles.nav_row_block}>
-      <Observer>
-        {() => (
-          <View style={[styles.top_row]}>
-            <Text style={styles.nav_screen_name}>{screen_name}</Text>
-            <Text>Another</Text>
-          </View>
-        )}
-      </Observer>
-
+      <View style={[styles.top_row]}>
+        <Observer>
+          {() => <Text style={styles.nav_screen_name}>{lang_store.locale.screens[name]}</Text>}
+        </Observer>
+        <Text>Another</Text>
+      </View>
       {row_separator}
       {minispacer}
     </View>
@@ -107,11 +103,11 @@ const drawer_component = ({ navigation }) => {
       <View style={styles.custom_drawer_content}>
         {top_drawer_banner()}
         {spacer}
-        {row(lang_store.locale.screens.tech_discussions, () => navigate('tech_discussions'))}
-        {row(lang_store.locale.screens.tech_events, () => navigate('tech_events'))}
-        {row(lang_store.locale.screens.bug_bounty_board, () => navigate('bug_bounty_board'))}
-        {row(lang_store.locale.screens.jobs_board, () => navigate('jobs_board'))}
-        {row(lang_store.locale.screens.settings, () => navigate('settings'))}
+        {row('tech_discussions', () => navigate('tech_discussions'))}
+        {row('tech_events', () => navigate('tech_events'))}
+        {row('bug_bounty_board', () => navigate('bug_bounty_board'))}
+        {row('jobs_board', () => navigate('jobs_board'))}
+        {row('settings', () => navigate('settings'))}
       </View>
     </LinearGradient>
   );
