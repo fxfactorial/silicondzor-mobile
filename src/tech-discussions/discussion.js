@@ -13,61 +13,57 @@ import { Entypo } from '@expo/vector-icons';
 
 import colors from '../colors';
 import { WithFBLoginModalAvailable, row_separator, post_title } from '../common';
+import { height as window_height } from '../styles';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from 'silicondzor-mobile/src/styles';
 import dummy_data from 'silicondzor-mobile/dev/dummy-data';
 
+const card_height = Math.floor(window_height * 0.2);
+// Have 20% to play with
+const card_title_block_height = Math.floor(window_height * 0.07);
+const card_content_block_height = Math.floor(window_height * 0.13);
+
 const styles = StyleSheet.create({
-  posting_container: {
-    flex: 1,
-    padding: PADDING_WIDTH_PERCENT,
-  },
-  posts_table: {
-    flex: 2,
-    height: 100000,
-  },
-  post_row: {
-    padding: PADDING_WIDTH_PERCENT,
-  },
+  posting_container: { flex: 1, padding: PADDING_WIDTH_PERCENT },
+  posts_table: { flex: 2, height: 100000 },
+  post_row: { padding: PADDING_WIDTH_PERCENT },
   card_container: {
+    height: card_height,
     backgroundColor: 'white',
     shadowColor: '#646464',
     shadowOpacity: 0.5,
     shadowOffset: { width: 3, height: 3 },
     alignItems: 'center',
   },
-  card_title: {
-    textAlign: 'center',
-    fontSize: 18,
-  },
-  card_author: {
-    fontSize: 14,
-    textAlign: 'center',
-  },
-  card_title_block: {
-    justifyContent: 'space-around',
-  },
+  card_title: { textAlign: 'center', fontSize: 18 },
+  card_title_block: { justifyContent: 'center', height: card_title_block_height },
+  card_author: { fontSize: 14, textAlign: 'center' },
   card_content: {
-    paddingVertical: '5%',
+    flex: 1,
+    width: '100%',
+    padding: PADDING_WIDTH_PERCENT,
   },
+  card_post_content: {},
 });
 
 const PRESS_EXPAND_DELAY = 500;
 
+// Need to find out height of a component.
+// https://github.com/airamrguez/react-native-measure-text
+// But requires a detach, ask in expo chat
 const sep = React.cloneElement(row_separator, { style: { minWidth: '90%', height: 2 } });
+const CARD_TEXT_LIMIT = 200;
 
 class Card extends React.Component {
-  state = { expanded: false };
+  // state = { card_expanded: false };
 
   initial_height = new Animated.Value(50);
 
-  on_long_press_expand = () => {
-    Animated.timing(this.initial_height, {
-      toValue: this.state.expanded === false ? 150 : 50,
-    }).start(() => {
-      this.setState(({ expanded }) => ({ expanded: !expanded }));
-    });
+  componentDidUpdate() {
+    // state changed
+  }
 
-    console.log('logn press hint');
+  on_long_press_toggle = () => {
+    //
   };
 
   on_short_press_navigate = () => {
@@ -77,7 +73,16 @@ class Card extends React.Component {
 
   render() {
     const { title, author, navigate, content = '' } = this.props;
-    const max_content = `${content.substring(0, 100)}...`;
+    let clipped_content = null;
+    if (content.length <= CARD_TEXT_LIMIT) {
+      clipped_content = content;
+    } else {
+      clipped_content = `${content.substring(0, CARD_TEXT_LIMIT)}...`;
+    }
+    // let clipped_content = null;
+    // if (this.state.text_expanded) clipped_content = `${content.substring(0, 200)}...`;
+    // else clipped_content = `${content.substring(0, 100)}...`;
+    // const max_content = this.state.expanded ? content : `${content.substring(0, 100)}...`;
 
     return (
       <View style={styles.card_container}>
@@ -86,12 +91,13 @@ class Card extends React.Component {
           <Text style={styles.card_author}>{author}</Text>
         </View>
         {sep}
+        {/* This is the animation that needs to expand, come back to*/}
         <TouchableWithoutFeedback
           delayLongPress={PRESS_EXPAND_DELAY}
-          onLongPress={this.on_long_press_expand}
+          onLongPress={this.on_long_press_toggle}
           onPress={this.on_short_press_navigate}>
-          <Animated.View style={[{ height: this.initial_height }]}>
-            <Text>{max_content}</Text>
+          <Animated.View style={[styles.card_content, { height: this.initial_height }]}>
+            <Text style={styles.card_post_content}>{clipped_content}</Text>
           </Animated.View>
         </TouchableWithoutFeedback>
       </View>

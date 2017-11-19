@@ -129,7 +129,7 @@ const LOCALES = Object.keys(localization);
 
 export const language_setting_store = new function() {
   extendObservable(this, {
-    localization_index: 1,
+    localization_index: 2,
 
     locale: computed(function() {
       return localization[LOCALES[this.localization_index]];

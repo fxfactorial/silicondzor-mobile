@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { DrawerNavigator, SafeAreaView } from 'react-navigation';
 import { LinearGradient } from 'expo';
 import { Entypo } from '@expo/vector-icons';
@@ -25,6 +25,7 @@ import { row_separator } from './common';
 const styles = StyleSheet.create({
   custom_drawer_container: {
     flex: 1,
+    height: '100%',
   },
   custom_drawer_content: {
     flex: 1,
