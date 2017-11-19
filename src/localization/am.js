@@ -16,12 +16,12 @@ export default {
   new_post_title: 'New Discussion-am',
   bug_bounty: 'Bug Bounty-AM',
   jobs_board: 'Jobs-am',
-  silicondzor: 'Silicondzor-AM',
+  silicondzor: 'սիլիկոնձոր',
   screens: {
-    tech_discussions: 'Discussions-AM',
-    tech_events: 'Upcoming events-AM',
+    tech_discussions: 'քննարկումներ',
+    tech_events: 'միջոցառումներ',
     bug_bounty_board: 'Bug Bounties-AM',
-    jobs_board: 'Jobs-AM',
-    settings: 'Settings-AM',
+    jobs_board: 'գործեր',
+    settings: 'կարգավորումներ',
   },
 };

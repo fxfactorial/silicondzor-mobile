@@ -22,8 +22,6 @@ import colors from './colors';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from './styles';
 import { row_separator } from './common';
 
-const { theme: { c, d, e } } = colors;
-
 const styles = StyleSheet.create({
   custom_drawer_container: {
     flex: 1,
@@ -31,10 +29,11 @@ const styles = StyleSheet.create({
   custom_drawer_content: {
     flex: 1,
     backgroundColor: 'transparent',
-    paddingLeft: '10%',
-    paddingTop: '10%',
+    paddingLeft: '2%',
+    paddingTop: '2%',
   },
   custom_drawer_banner: {
+    color: 'white',
     textAlign: 'right',
     fontSize: 24,
   },
@@ -51,10 +50,11 @@ const styles = StyleSheet.create({
     height: '10%',
   },
   mini_spacer: {
-    height: '5%',
+    height: '7%',
   },
-  nav_row_block: { paddingRight: '15%' },
-  nav_screen_name: { color: 'purple' },
+  nav_row_block: { paddingRight: '10%' },
+  nav_screen_name: { color: 'aliceblue', fontSize: 20 },
+  logged_in_name: { color: 'white' },
 });
 
 const obs = (
@@ -63,7 +63,9 @@ const obs = (
   </Observer>
 );
 
-const logged_in_name = <Observer>{() => <Text>{user_store.name}</Text>}</Observer>;
+const logged_in_name = (
+  <Observer>{() => <Text style={styles.logged_in_name}>{user_store.name}</Text>}</Observer>
+);
 
 const top_drawer_banner = () => (
   <View style={styles.top_row}>
@@ -98,9 +100,11 @@ const row = (name, action) => (
 
 const drawer_component = ({ navigation }) => {
   const { navigate } = navigation;
+  const { start, end } = colors.drawer_component;
   return (
-    <LinearGradient style={styles.custom_drawer_container} colors={[c, d, e]}>
+    <LinearGradient style={styles.custom_drawer_container} colors={[start, end]}>
       <View style={styles.custom_drawer_content}>
+        {minispacer}
         {top_drawer_banner()}
         {spacer}
         {row('tech_discussions', () => navigate('tech_discussions'))}

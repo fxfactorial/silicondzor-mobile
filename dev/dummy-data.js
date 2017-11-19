@@ -21,10 +21,43 @@ export const search_dummy_results = [
 ];
 
 export default [
-  { title: 'foo-bar', author: 'Robert', upvotes: vote(), downvotes: vote(), id: '123' },
+  {
+    title: 'foo-bar-2',
+    content: 'yet  code to blab  asd about',
+    author: 'Robert',
+    upvotes: vote(),
+    downvotes: vote(),
+    id: '103',
+  },
   {
     title: 'first thing out there',
     author: 'Ashley',
+    content: 'Some long let start speaking textT',
+    upvotes: vote(),
+    downvotes: vote(),
+    id: '104',
+  },
+  {
+    title: 'next thing we could get ',
+    author: 'Hasmik',
+    content:
+      'Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say',
+    upvotes: vote(),
+    downvotes: vote(),
+    id: '105',
+  },
+  {
+    title: 'foo-bar',
+    content: 'yet more code to blab about',
+    author: 'Robert',
+    upvotes: vote(),
+    downvotes: vote(),
+    id: '123',
+  },
+  {
+    title: 'first thing out there',
+    author: 'Ashley',
+    content: 'Some long textT',
     upvotes: vote(),
     downvotes: vote(),
     id: '124',
@@ -32,6 +65,7 @@ export default [
   {
     title: 'next thing we could get ',
     author: 'Hasmik',
+    content: 'Some long text o',
     upvotes: vote(),
     downvotes: vote(),
     id: '125',
@@ -40,11 +74,19 @@ export default [
   {
     title: 'lets have some controversy',
     author: 'Serj',
+    content: 'Some 2 text00',
     upvotes: vote(),
     downvotes: vote(),
     id: '127',
   },
-  { title: 'why is caltrain $16', author: 'Lit', upvotes: vote(), downvotes: vote(), id: '128' },
+  {
+    title: 'why is caltrain $16',
+    author: 'Lit',
+    upvotes: vote(),
+    content: 'Some 2 text 2',
+    downvotes: vote(),
+    id: '128',
+  },
 ];
 
 export const events_dummy_results = [
