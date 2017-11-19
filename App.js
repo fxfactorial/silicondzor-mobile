@@ -10,6 +10,7 @@ import credentials from './credentials.json';
 
 import launch_drawer from './src/launch.js';
 import post_drilldown from './src/tech-discussions/post-drilldown';
+import user_profile from './src/user-profile.js';
 
 console.disableYellowBox = true;
 useStrict(true);
@@ -17,4 +18,5 @@ useStrict(true);
 export default StackNavigator({
   home: { screen: launch_drawer },
   post_discussion: { screen: post_drilldown },
+  user_profile: { screen: user_profile },
 });
