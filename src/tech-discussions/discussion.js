@@ -20,6 +20,7 @@ const card_height = Math.floor(window_height * 0.2);
 // Have 20% to play with
 const card_title_block_height = Math.floor(window_height * 0.07);
 const card_content_block_height = Math.floor(window_height * 0.13);
+const card_title_padding = Math.floor(window_height * 0.05);
 
 const styles = StyleSheet.create({
   posting_container: { flex: 1, padding: PADDING_WIDTH_PERCENT },
@@ -34,12 +35,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   card_title: { textAlign: 'center', fontSize: 18 },
-  card_title_block: { justifyContent: 'center', height: card_title_block_height },
+  card_title_block: {
+    alignItems: 'flex-start',
+    height: card_title_block_height,
+    width: '100%',
+    paddingLeft: PADDING_WIDTH_PERCENT,
+    paddingTop: PADDING_WIDTH_PERCENT,
+  },
   card_author: { fontSize: 14, textAlign: 'center' },
   card_content: {
     flex: 1,
     width: '100%',
-    padding: PADDING_WIDTH_PERCENT,
+    padding: PADDING_WIDTH_PERCENT_DOUBLE,
   },
   card_post_content: {},
 });
@@ -49,7 +56,14 @@ const PRESS_EXPAND_DELAY = 500;
 // Need to find out height of a component.
 // https://github.com/airamrguez/react-native-measure-text
 // But requires a detach, ask in expo chat
-const sep = React.cloneElement(row_separator, { style: { minWidth: '90%', height: 2 } });
+const sep = React.cloneElement(row_separator, {
+  style: {
+    backgroundColor: colors.drawer_component.start,
+    minWidth: '95%',
+    height: 2,
+    opacity: 0.6,
+  },
+});
 const CARD_TEXT_LIMIT = 200;
 
 class Card extends React.Component {

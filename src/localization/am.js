@@ -3,9 +3,7 @@ import flags from './flags';
 export default {
   emoji_flag: flags.hy,
   name: 'հայերեն',
-  settings: 'կարգավորումները',
   push_notification: 'Հրեղեն ծանուցում ',
-  language: 'լեզու',
   up: 'up-am',
   down: 'down-am',
   search: 'Որոնում...',
@@ -17,6 +15,6 @@ export default {
     tech_events: 'միջոցառումներ',
     bug_bounty_board: 'Բագագին Սխալագին',
     jobs_board: 'գործեր',
-    settings: 'կարգավորումներ',
+    settings: 'կարգավորումները',
   },
 };

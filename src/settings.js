@@ -121,7 +121,7 @@ const preference_row = (action, left, right) =>
 const language_change_row = preference_row(
   lang_store.cycle_localization,
   <Observer>
-    {() => <FontText content={lang_store.locale.language} style={styles.language_row_prompt} />}
+    {() => <FontText content={lang_store.locale.name} style={styles.language_row_prompt} />}
   </Observer>,
   <Observer>
     {() => <FontText content={lang_store.locale.emoji_flag} style={styles.emoji_text} />}

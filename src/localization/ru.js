@@ -4,7 +4,6 @@ export default {
   emoji_flag: flags.ru,
   name: 'русский',
   push_notification: 'Push Notifications-Ru',
-  language: 'язык',
   up: 'up-ru',
   down: 'down-ru',
   search: 'Поиск...',
