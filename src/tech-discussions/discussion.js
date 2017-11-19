@@ -1,7 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react/native';
 import {
-  Text,
   View,
   FlatList,
   TouchableOpacity,
@@ -88,7 +87,7 @@ class Card extends React.Component {
       <View style={styles.card_container}>
         <View style={styles.card_title_block}>
           <FontText content={title} style={styles.card_title} />
-          <Text style={styles.card_author}>{author}</Text>
+          <FontText content={author} style={styles.card_author} />
         </View>
         {sep}
         {/* This is the animation that needs to expand, come back to*/}
@@ -97,7 +96,7 @@ class Card extends React.Component {
           onLongPress={this.on_long_press_toggle}
           onPress={this.on_short_press_navigate}>
           <Animated.View style={[styles.card_content, { height: this.initial_height }]}>
-            <Text style={styles.card_post_content}>{clipped_content}</Text>
+            <FontText content={clipped_content} style={styles.card_post_content} />
           </Animated.View>
         </TouchableWithoutFeedback>
       </View>

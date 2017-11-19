@@ -1,7 +1,6 @@
 import React from 'react';
 import { observer, Observer } from 'mobx-react/native';
 import {
-  Text,
   View,
   FlatList,
   TouchableOpacity,
@@ -16,7 +15,7 @@ import {
 import { LinearGradient } from 'expo';
 import { Entypo } from '@expo/vector-icons';
 
-import { WithFBLoginModalAvailable } from './common';
+import { WithFBLoginModalAvailable, FontText } from './common';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from 'silicondzor-mobile/src/styles';
 import { user_session_store, language_setting_store as lang_store } from './state';
 import { DrawerIconOpener } from './common';
@@ -91,14 +90,16 @@ const styles = StyleSheet.create({
 });
 
 const title = (
-  <Observer>{() => <Text style={styles.title}>{lang_store.locale.settings}</Text>}</Observer>
+  <Observer>
+    {() => <FontText content={lang_store.locale.settings} style={styles.title} />}
+  </Observer>
 );
 
 const clr_range = ['#4c669f', '#3b5998', '#192f6a'];
 
 const preferences_banner = (
   <View style={styles.pref_banner}>
-    <Text style={styles.pref_banner_text}>Preferences save on change</Text>
+    <FontText content={'Preferences save on change'} style={styles.pref_banner_text} />
   </View>
 );
 
@@ -120,15 +121,19 @@ const preference_row = (action, left, right) =>
 const language_change_row = preference_row(
   lang_store.cycle_localization,
   <Observer>
-    {() => <Text style={styles.language_row_prompt}>{lang_store.locale.language}</Text>}
+    {() => <FontText content={lang_store.locale.language} style={styles.language_row_prompt} />}
   </Observer>,
-  <Observer>{() => <Text style={styles.emoji_text}>{lang_store.locale.emoji_flag}</Text>}</Observer>
+  <Observer>
+    {() => <FontText content={lang_store.locale.emoji_flag} style={styles.emoji_text} />}
+  </Observer>
 );
 
 const push_notifications_row = preference_row(
   null,
   <Observer>
-    {() => <Text style={styles.language_row_prompt}>{lang_store.locale.push_notification}</Text>}
+    {() => (
+      <FontText content={lang_store.locale.push_notification} style={styles.language_row_prompt} />
+    )}
   </Observer>,
   <Observer>
     {() => (
@@ -161,11 +166,11 @@ export default observer(
     user_name() {
       // Must keep at least empty string to keep height correct.
       const message = user_session_store.logged_in ? user_session_store.name : ' ';
-      return <Text style={styles.name_text}>{message}</Text>;
+      return <FontText content={message} style={styles.name_text} />;
     }
 
     signed_out_view() {
-      return <Text>Signed out</Text>;
+      return <FontText content={'Signed out'} />;
     }
 
     render() {

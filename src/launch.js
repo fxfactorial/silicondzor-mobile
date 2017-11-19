@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { DrawerNavigator, SafeAreaView } from 'react-navigation';
 import { LinearGradient } from 'expo';
 import { Entypo } from '@expo/vector-icons';
@@ -20,7 +20,7 @@ import {
 } from './state';
 import colors from './colors';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from './styles';
-import { row_separator } from './common';
+import { row_separator, FontText } from './common';
 
 const styles = StyleSheet.create({
   custom_drawer_container: {
@@ -60,12 +60,12 @@ const styles = StyleSheet.create({
 
 const obs = (
   <Observer>
-    {() => <Text style={styles.custom_drawer_banner}>{lang_store.locale.silicondzor}</Text>}
+    {() => <FontText content={lang_store.locale.silicondzor} style={styles.custom_drawer_banner} />}
   </Observer>
 );
 
 const logged_in_name = (
-  <Observer>{() => <Text style={styles.logged_in_name}>{user_store.name}</Text>}</Observer>
+  <Observer>{() => <FontText content={user_store.name} style={styles.logged_in_name} />}</Observer>
 );
 
 const top_drawer_banner = () => (
@@ -89,9 +89,11 @@ const row = (name, action) => (
     <View style={styles.nav_row_block}>
       <View style={[styles.top_row]}>
         <Observer>
-          {() => <Text style={styles.nav_screen_name}>{lang_store.locale.screens[name]}</Text>}
+          {() => (
+            <FontText content={lang_store.locale.screens[name]} style={styles.nav_screen_name} />
+          )}
         </Observer>
-        <Text>Another</Text>
+        <FontText content={'another'} />
       </View>
       {row_separator}
       {minispacer}
