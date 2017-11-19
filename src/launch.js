@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     height: '5%',
   },
   nav_row_block: { paddingRight: '15%' },
+  nav_screen_name: { color: 'purple' },
 });
 
 const obs = (
@@ -81,13 +82,18 @@ const minispacer = <View style={styles.mini_spacer} />;
 // we register the login time with the DB. Then we compare all the
 // items posted SINCE we logged in, say new ones
 
-const row = (keyname, prompt, action) => (
+const row = (screen_name, action) => (
   <TouchableOpacity onPress={action}>
     <View style={styles.nav_row_block}>
-      <View style={[styles.top_row]}>
-        <Text>first</Text>
-        <Text>Another</Text>
-      </View>
+      <Observer>
+        {() => (
+          <View style={[styles.top_row]}>
+            <Text style={styles.nav_screen_name}>{screen_name}</Text>
+            <Text>Another</Text>
+          </View>
+        )}
+      </Observer>
+
       {row_separator}
       {minispacer}
     </View>
@@ -101,8 +107,11 @@ const drawer_component = ({ navigation }) => {
       <View style={styles.custom_drawer_content}>
         {top_drawer_banner()}
         {spacer}
-        {row()}
-        {row()}
+        {row(lang_store.locale.screens.tech_discussions, () => navigate('tech_discussions'))}
+        {row(lang_store.locale.screens.tech_events, () => navigate('tech_events'))}
+        {row(lang_store.locale.screens.bug_bounty_board, () => navigate('bug_bounty_board'))}
+        {row(lang_store.locale.screens.jobs_board, () => navigate('jobs_board'))}
+        {row(lang_store.locale.screens.settings, () => navigate('settings'))}
       </View>
     </LinearGradient>
   );
