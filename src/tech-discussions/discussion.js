@@ -12,7 +12,7 @@ import {
 import { Entypo } from '@expo/vector-icons';
 
 import colors from '../colors';
-import { WithFBLoginModalAvailable, row_separator, post_title } from '../common';
+import { WithFBLoginModalAvailable, row_separator, post_title, FontText } from '../common';
 import { height as window_height } from '../styles';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from 'silicondzor-mobile/src/styles';
 import dummy_data from 'silicondzor-mobile/dev/dummy-data';
@@ -87,7 +87,7 @@ class Card extends React.Component {
     return (
       <View style={styles.card_container}>
         <View style={styles.card_title_block}>
-          <Text style={styles.card_title}>{title}</Text>
+          <FontText content={title} style={styles.card_title} />
           <Text style={styles.card_author}>{author}</Text>
         </View>
         {sep}

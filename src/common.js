@@ -25,6 +25,7 @@ import {
   language_setting_store as lang_store,
   new_discussion_store,
   user_session_store as user_store,
+  init_configure_store as init_store,
 } from './state';
 
 const styles = StyleSheet.create({
@@ -186,3 +187,11 @@ const InputWithEffect = observer(
     }
   }
 );
+
+export const FontText = observer(({ content, style = {}, rest = {} }) => (
+  <Text
+    style={[style, { fontFamily: init_store.font_loaded ? 'lato_regular' : 'Arial' }]}
+    {...rest}>
+    {content}
+  </Text>
+));
