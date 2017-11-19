@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 2 },
   },
   post_row: {
-    backgroundColor: 'red',
+    padding: PADDING_WIDTH_PERCENT,
   },
 });
 

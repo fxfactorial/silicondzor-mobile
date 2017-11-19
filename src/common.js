@@ -39,9 +39,6 @@ const styles = StyleSheet.create({
     padding: PADDING_WIDTH_PERCENT,
     backgroundColor: 'aliceblue',
   },
-  post_title: {
-    fontSize: 24,
-  },
   title_input: {
     backgroundColor: 'purple',
   },
@@ -58,7 +55,6 @@ const styles = StyleSheet.create({
     padding: PADDING_WIDTH_PERCENT,
   },
   post_title_input: {
-    backgroundColor: 'red',
     padding: PADDING_WIDTH_PERCENT,
   },
   post_content_prompt: {
@@ -70,6 +66,11 @@ const styles = StyleSheet.create({
   post_content_block: {
     justifyContent: 'space-between',
     flex: 1,
+  },
+  listing_row: {
+    shadowColor: '#646464',
+    shadowOpacity: 0.5,
+    shadowOffset: { width: 2, height: 2 },
   },
 });
 
@@ -114,7 +115,7 @@ export const vote_with_action = (up_arrow, styles = {}, action = null) => (
 );
 
 export const post_title = (title, author_name) => (
-  <View>
+  <View style={styles.listing_row}>
     <Text style={styles.post_title}>{title}</Text>
     <Badge textStyle={styles.post_author} value={author_name} />
   </View>
