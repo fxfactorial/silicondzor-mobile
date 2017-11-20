@@ -9,6 +9,7 @@ import {
   Animated,
 } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
+import { Badge } from 'react-native-elements';
 
 import colors from '../colors';
 import {
@@ -45,13 +46,14 @@ const styles = StyleSheet.create({
     paddingLeft: PADDING_WIDTH_PERCENT,
     paddingTop: PADDING_WIDTH_PERCENT,
   },
-  card_author: { fontSize: 14, textAlign: 'center' },
+  card_author: { fontSize: 14, color: 'white', textAlign: 'center' },
   card_content: {
     width: '100%',
     padding: PADDING_WIDTH_PERCENT_DOUBLE,
   },
   flex_start: { alignItems: 'flex-start' },
   person_column: { paddingLeft: PADDING_WIDTH_PERCENT_DOUBLE },
+  badge: { backgroundColor: colors.palette.base },
 });
 
 const PRESS_EXPAND_DELAY = 500;
@@ -104,7 +106,9 @@ class Card extends React.Component {
     const person_column = (
       <View style={[styles.flex_start, styles.person_column]}>
         <FontText font={'lato_light'} content={title} style={styles.card_title} />
-        <FontText font={'lato_light'} content={author} style={styles.card_author} />
+        <Badge containerStyle={styles.badge}>
+          <FontText font={'lato_light'} content={author} style={styles.card_author} />
+        </Badge>
       </View>
     );
 
