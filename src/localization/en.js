@@ -14,6 +14,7 @@ export default {
   new_tech_event_title: 'New Tech Event',
   new_tech_bug_bounty: 'New bug bounty',
   new_tech_job_posting: 'New Job Posting',
+  replies: 'replies',
   screens: {
     tech_discussions: 'Discussions',
     tech_events: 'Upcoming events',

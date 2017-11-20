@@ -28,6 +28,7 @@ export default [
     upvotes: vote(),
     downvotes: vote(),
     id: '103',
+    reply_count: 2,
   },
   {
     title: 'first thing out there',
@@ -35,6 +36,7 @@ export default [
     content: 'Some long let start speaking textT',
     upvotes: vote(),
     downvotes: vote(),
+    reply_count: 7,
     id: '104',
   },
   {
@@ -44,6 +46,7 @@ export default [
       'Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say, Some long text o I have something to say',
     upvotes: vote(),
     downvotes: vote(),
+    reply_count: 6,
     id: '105',
   },
   {
@@ -52,6 +55,7 @@ export default [
     author: 'Robert',
     upvotes: vote(),
     downvotes: vote(),
+    reply_count: 4,
     id: '123',
   },
   {
@@ -60,6 +64,7 @@ export default [
     content: 'Some long textT',
     upvotes: vote(),
     downvotes: vote(),
+    reply_count: 34,
     id: '124',
   },
   {
@@ -68,9 +73,18 @@ export default [
     content: 'Some long text o',
     upvotes: vote(),
     downvotes: vote(),
+    reply_count: 84,
     id: '125',
   },
-  { title: 'yet another thing', author: 'Jim', upvotes: vote(), downvotes: vote(), id: '126' },
+  {
+    title: 'yet another thing',
+    author: 'Jim',
+    content: 'boring tech article',
+    reply_count: 10,
+    upvotes: vote(),
+    downvotes: vote(),
+    id: '126',
+  },
   {
     title: 'lets have some controversy',
     author: 'Serj',
@@ -78,6 +92,7 @@ export default [
     upvotes: vote(),
     downvotes: vote(),
     id: '127',
+    reply_count: 5,
   },
   {
     title: 'why is caltrain $16',
@@ -86,6 +101,7 @@ export default [
     content: 'Some 2 text 2',
     downvotes: vote(),
     id: '128',
+    reply_count: 3,
   },
 ];
 

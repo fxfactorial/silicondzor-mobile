@@ -10,6 +10,7 @@ export default {
   be_kind_in_what_you_say: 'Будьте добры и уважительны в том, что вы говорите',
   new_post_title: 'Новый пост',
   silicondzor: 'Силикондзор',
+  replies: 'replies-ru',
   screens: {
     tech_discussions: 'Обсуждение',
     tech_events: 'событие',

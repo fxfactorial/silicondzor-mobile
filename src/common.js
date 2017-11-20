@@ -195,3 +195,5 @@ export const FontText = observer(({ content, font = 'lato_regular', style = {}, 
     {content}
   </Text>
 ));
+
+export const five_between = <View style={{ width: 5 }} />;

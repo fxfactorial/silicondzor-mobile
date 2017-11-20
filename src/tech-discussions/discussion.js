@@ -19,9 +19,10 @@ import {
   post_title,
   FontText,
   VOTE_ELEMENTS,
+  five_between,
 } from '../common';
 import { height as window_height } from '../styles';
-import { user_session_store as user_store } from '../state';
+import { user_session_store as user_store, language_setting_store as lang_store } from '../state';
 import { get_post } from '../query';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from 'silicondzor-mobile/src/styles';
 import dummy_data from 'silicondzor-mobile/dev/dummy-data';
@@ -56,6 +57,7 @@ const styles = StyleSheet.create({
   flex_start: { alignItems: 'flex-start' },
   person_column: { paddingLeft: PADDING_WIDTH_PERCENT_DOUBLE },
   badge: { backgroundColor: colors.palette.base },
+  badge_row: { flexDirection: 'row', minWidth: '70%' },
 });
 
 const PRESS_EXPAND_DELAY = 500;
@@ -94,7 +96,7 @@ class Card extends React.Component {
   };
 
   render() {
-    const { title, author, navigate, content = '' } = this.props;
+    const { title, author, navigate, content = '', reply_count = 0 } = this.props;
     let clipped_content = null;
     if (content.length <= CARD_TEXT_LIMIT) {
       clipped_content = content;
@@ -107,12 +109,19 @@ class Card extends React.Component {
         {vote_with_action(false)}
       </View>
     );
+    const comment_count = `${reply_count} ${lang_store.locale.replies}`;
     const person_column = (
       <View style={[styles.flex_start, styles.person_column]}>
         <FontText font={'lato_light'} content={title} style={styles.card_title} />
-        <Badge containerStyle={styles.badge}>
-          <FontText font={'lato_light'} content={author} style={styles.card_author} />
-        </Badge>
+        <View style={styles.badge_row}>
+          <Badge containerStyle={styles.badge}>
+            <FontText font={'lato_light'} content={author} style={styles.card_author} />
+          </Badge>
+          {five_between}
+          <Badge containerStyle={styles.badge}>
+            <FontText font={'lato_light'} content={comment_count} style={styles.card_author} />
+          </Badge>
+        </View>
       </View>
     );
 
@@ -140,36 +149,7 @@ class Card extends React.Component {
     );
   }
 }
-
-// class PostingRow extends React.Component {
-//   on_long_press_expand() {
-//     console.log('Long press animation expand');
-//     // Implement animation that expand the row with a bounce
-//   }
-
-//   on_short_press_navigate = () => {
-//     console.log('short press');
-//     const { navigate } = this.props;
-//     // Give the ID as parameter so story can be queryied for, not
-//     // necessary to be logged in
-//     navigate('post_discussion');
-//   };
-
-// render() {
-//   return (
-//     <TouchableWithoutFeedback
-//       delayLongPress={2000}
-//       onLongPress={this.on_long_press_expand}
-//       onPress={this.on_short_press_navigate}>
-//       </TouchableWithoutFeedback>
-//     );
-//   }
-// }
-
-const render_row = (navigate, { item }) => {
-  // console.log(JSON.stringify(item));
-  return <Card {...item} navigate={navigate} />;
-};
+const render_row = (navigate, { item }) => <Card {...item} navigate={navigate} />;
 
 const white_space = <View style={{ height: 15 }} />;
 
