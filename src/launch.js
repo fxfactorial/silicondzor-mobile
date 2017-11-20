@@ -22,8 +22,6 @@ import colors from './colors';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE, height } from './styles';
 import { row_separator, FontText } from './common';
 
-const ROWS_BLOCK_HEIGHT = Math.floor(height * 0.4);
-
 const styles = StyleSheet.create({
   custom_drawer_container: {
     flex: 1,

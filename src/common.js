@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Animated,
   TextInput,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import { Entypo, Octicons } from '@expo/vector-icons';
 import { observer, Observer } from 'mobx-react/native';
@@ -20,7 +21,11 @@ import {
 } from 'react-native-elements';
 
 import colors from './colors';
-import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from './styles';
+import {
+  PADDING_WIDTH_PERCENT,
+  PADDING_WIDTH_PERCENT_DOUBLE,
+  height as window_height,
+} from './styles';
 import { FBBasedLogin } from './modals';
 import {
   language_setting_store as lang_store,
@@ -29,21 +34,17 @@ import {
   init_configure_store as init_store,
 } from './state';
 
+const card_height = Math.floor(window_height * 0.22);
+
 const styles = StyleSheet.create({
-  post_title: {
-    fontSize: 18,
-  },
-  post_author: {
-    fontSize: 11,
-  },
+  post_title: { fontSize: 18 },
+  post_author: { fontSize: 11 },
   new_post_container: {
     flex: 1,
     padding: PADDING_WIDTH_PERCENT,
     backgroundColor: 'aliceblue',
   },
-  title_input: {
-    backgroundColor: 'purple',
-  },
+  title_input: { backgroundColor: 'purple' },
   post_content_input_container: {
     flex: 1,
     maxHeight: '80%',
@@ -52,13 +53,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowOffset: { width: 2, height: 2 },
   },
-  post_content: {
-    flex: 1,
-    padding: PADDING_WIDTH_PERCENT,
-  },
-  post_title_input: {
-    padding: PADDING_WIDTH_PERCENT,
-  },
+  post_content: { flex: 1, padding: PADDING_WIDTH_PERCENT },
+  post_title_input: { padding: PADDING_WIDTH_PERCENT },
   post_content_prompt: {
     fontSize: 16,
     textAlign: 'center',
@@ -75,6 +71,32 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 2 },
   },
   code_icon: { color: colors.palette.darkest, opacity: 0.9 },
+  card_title_block: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    width: '100%',
+    paddingLeft: PADDING_WIDTH_PERCENT,
+    paddingTop: PADDING_WIDTH_PERCENT,
+  },
+
+  flex_start: { alignItems: 'flex-start' },
+  person_column: { paddingLeft: PADDING_WIDTH_PERCENT_DOUBLE },
+  card_title: { fontSize: 20 },
+  badge_row: { flexDirection: 'row', minWidth: '70%' },
+  badge: { backgroundColor: colors.palette.base },
+  card_author: { fontSize: 14, color: 'white', textAlign: 'center' },
+  card_content: {
+    width: '100%',
+    padding: PADDING_WIDTH_PERCENT_DOUBLE,
+  },
+  card_container: {
+    height: card_height,
+    backgroundColor: 'white',
+    shadowColor: '#646464',
+    shadowOpacity: 0.5,
+    shadowOffset: { width: 3, height: 3 },
+    alignItems: 'center',
+  },
 });
 
 export const DrawerIconOpener = ({ navigate }) => (
@@ -197,3 +219,83 @@ export const FontText = observer(({ content, font = 'lato_regular', style = {}, 
 ));
 
 export const five_between = <View style={{ width: 5 }} />;
+
+const sep = React.cloneElement(row_separator, {
+  style: {
+    backgroundColor: colors.drawer_component.start,
+    minWidth: '95%',
+    height: 2,
+    opacity: 0.6,
+  },
+});
+
+export class Card extends React.Component {
+  // state = { card_expanded: false };
+
+  static CARD_TEXT_LIMIT = 150;
+  static PRESS_EXPAND_DELAY = 500;
+
+  initial_height = new Animated.Value(50);
+
+  componentDidUpdate() {
+    // state changed
+  }
+
+  on_long_press_toggle = () => {
+    //
+  };
+
+  render() {
+    const { on_short_press, title, author, navigate, content = '', reply_count = 0 } = this.props;
+    let clipped_content = null;
+    if (content.length <= Card.CARD_TEXT_LIMIT) {
+      clipped_content = content;
+    } else {
+      clipped_content = `${content.substring(0, Card.CARD_TEXT_LIMIT)}...`;
+    }
+    const vote_column = (
+      <View style={styles.flex_start}>
+        {vote_with_action(true)}
+        {vote_with_action(false)}
+      </View>
+    );
+    const comment_count = `${reply_count} ${lang_store.locale.replies}`;
+    const person_column = (
+      <View style={[styles.flex_start, styles.person_column]}>
+        <FontText font={'lato_light'} content={title} style={styles.card_title} />
+        <View style={styles.badge_row}>
+          <Badge containerStyle={styles.badge}>
+            <FontText font={'lato_light'} content={author} style={styles.card_author} />
+          </Badge>
+          {five_between}
+          <Badge containerStyle={styles.badge}>
+            <FontText font={'lato_light'} content={comment_count} style={styles.card_author} />
+          </Badge>
+        </View>
+      </View>
+    );
+
+    return (
+      <View style={styles.card_container}>
+        <View style={[styles.card_title_block, styles.flex_start]}>
+          {vote_column}
+          {person_column}
+        </View>
+        {sep}
+        {/* This is the animation that needs to expand, come back to*/}
+        <TouchableWithoutFeedback
+          delayLongPress={Card.PRESS_EXPAND_DELAY}
+          onLongPress={undefined}
+          onPress={on_short_press}>
+          <Animated.View style={[styles.card_content, { height: this.initial_height }]}>
+            <FontText
+              font={'lato_light'}
+              content={clipped_content}
+              style={styles.card_post_content}
+            />
+          </Animated.View>
+        </TouchableWithoutFeedback>
+      </View>
+    );
+  }
+}
