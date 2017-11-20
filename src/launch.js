@@ -73,7 +73,7 @@ const logged_in_name = (
 
 const top_drawer_banner = () => (
   <View style={styles.top_row}>
-    <Avatar medium={true} rounded={true} source={{ uri: user_store.user_fb_profile_picture_url }} />
+    <Avatar medium={true} rounded={true} source={{ uri: user_store.fb.picture_url }} />
     <View style={styles.top_row_name_block}>
       {obs}
       {logged_in_name}

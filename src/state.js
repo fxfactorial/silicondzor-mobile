@@ -6,7 +6,10 @@ import { asyncAction } from 'mobx-utils';
 export const init_configure_store = new function() {
   extendObservable(this, {
     font_loaded: false,
+    // application_ready:false
   });
+
+  // this.set_application_ready = () => this.application_ready = true;
 
   this.load_font = () =>
     runInAction(async () => {
@@ -39,7 +42,12 @@ export const tech_discussion_store = new function() {
 
 export const user_session_store = new function() {
   extendObservable(this, {
-    fb: { token: null, id: '', picture_url: '' },
+    fb: {
+      token: null,
+      id: '',
+      picture_url: '',
+      name: '',
+    },
     firebase: null,
     currently_viewing_post: {
       author_id: '',
@@ -53,11 +61,15 @@ export const user_session_store = new function() {
     },
     settings: { preference_language: 'en', push_notifications_enabled: true },
     post_cache: observable.map({}),
-    name: 'Edgar Aroutiounian',
     logged_in: computed(function() {
       return this.fb.token !== null;
     }),
   });
+
+  this.set_firebase_user_obj = obj =>
+    runInAction(() => {
+      this.firebase = obj;
+    });
 
   this.toggle_push_notif = () =>
     runInAction(() => {

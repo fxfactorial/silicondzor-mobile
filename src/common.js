@@ -162,8 +162,7 @@ export const NewPost = observer(
     // }
 
     try_submit = async () => {
-      const result = await this.props.submit_handler();
-      console.log(result);
+      await this.props.submit_handler();
     };
 
     render() {
@@ -182,7 +181,7 @@ export const NewPost = observer(
             {post_prompt}
             <InputWithEffect store={store} />
             <Button
-              disabled={user_store.logged_in}
+              disabled={!user_store.logged_in}
               onPress={this.try_submit}
               raised={true}
               title={'Submit'}
