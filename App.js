@@ -10,7 +10,7 @@ import launch_drawer from './src/launch.js';
 import post_drilldown from './src/tech-discussions/post-drilldown';
 import user_profile from './src/user-profile.js';
 import colors from './src/colors';
-import { PADDING_WIDTH_PERCENT } from './src/styles';
+import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from './src/styles';
 import { init_configure_store as init_store } from './src/state';
 
 console.disableYellowBox = true;
@@ -24,7 +24,7 @@ const Application = StackNavigator(
   },
   {
     navigationOptions: ({ navigation }) => ({
-      headerStyle: { paddingHorizontal: PADDING_WIDTH_PERCENT },
+      headerStyle: { paddingHorizontal: PADDING_WIDTH_PERCENT_DOUBLE },
     }),
   }
 );

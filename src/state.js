@@ -11,6 +11,8 @@ export const init_configure_store = new function() {
   this.load_font = () =>
     runInAction(async () => {
       await Font.loadAsync({
+        lato_italic: require('silicondzor-mobile/assets/fonts/Lato-Italic.ttf'),
+        lato_light: require('silicondzor-mobile/assets/fonts/Lato-Light.ttf'),
         lato_regular: require('silicondzor-mobile/assets/fonts/Lato-Regular.ttf'),
       });
       await asyncAction(function*() {

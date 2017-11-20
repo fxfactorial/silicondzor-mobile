@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   nav_screen_name: { color: 'aliceblue', fontSize: 20 },
   logged_in_name: { color: 'white' },
   rows_block: { minHeight: '50%', maxHeight: '70%' },
-  code_icon: { color: colors.drawer_component.start, opacity: 0.9 },
+  code_icon: { color: colors.palette.darkest, opacity: 0.9 },
 });
 
 const obs = (

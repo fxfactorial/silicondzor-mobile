@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowOffset: { width: 2, height: 2 },
   },
-  code_icon: { color: colors.drawer_component.start, opacity: 0.9 },
+  code_icon: { color: colors.palette.darkest, opacity: 0.9 },
 });
 
 export const DrawerIconOpener = ({ navigate }) => (
@@ -105,14 +105,14 @@ export const WithFBLoginModalAvailable = p => (
 export const row_separator = <Divider />;
 
 export const VOTE_ELEMENTS = {
-  upvote: <Entypo name={'chevron-up'} size={24} />,
-  downvote: <Entypo name={'chevron-down'} size={24} />,
+  upvote: <Entypo name={'thumbs-up'} size={24} />,
+  downvote: <Entypo name={'thumbs-down'} size={24} />,
 };
 
 export const vote_with_action = (up_arrow, styles = {}, action = null) => (
   <TouchableOpacity onPress={action}>
     {React.cloneElement(up_arrow ? VOTE_ELEMENTS.upvote : VOTE_ELEMENTS.downvote, {
-      style: { ...styles },
+      style: { ...styles, backgroundColor: 'transparent', color: colors.palette.darkest },
     })}
   </TouchableOpacity>
 );
@@ -190,10 +190,8 @@ const InputWithEffect = observer(
   }
 );
 
-export const FontText = observer(({ content, style = {}, rest = {} }) => (
-  <Text
-    style={[style, { fontFamily: init_store.font_loaded ? 'lato_regular' : 'Arial' }]}
-    {...rest}>
+export const FontText = observer(({ content, font = 'lato_regular', style = {}, rest = {} }) => (
+  <Text style={[style, { fontFamily: init_store.font_loaded ? font : 'Arial' }]} {...rest}>
     {content}
   </Text>
 ));

@@ -11,16 +11,19 @@ import {
 import { Entypo } from '@expo/vector-icons';
 
 import colors from '../colors';
-import { WithFBLoginModalAvailable, row_separator, post_title, FontText } from '../common';
+import {
+  WithFBLoginModalAvailable,
+  row_separator,
+  vote_with_action,
+  post_title,
+  FontText,
+  VOTE_ELEMENTS,
+} from '../common';
 import { height as window_height } from '../styles';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from 'silicondzor-mobile/src/styles';
 import dummy_data from 'silicondzor-mobile/dev/dummy-data';
 
-const card_height = Math.floor(window_height * 0.2);
-// Have 20% to play with
-const card_title_block_height = Math.floor(window_height * 0.07);
-const card_content_block_height = Math.floor(window_height * 0.13);
-const card_title_padding = Math.floor(window_height * 0.05);
+const card_height = Math.floor(window_height * 0.22);
 
 const styles = StyleSheet.create({
   posting_container: { flex: 1, padding: PADDING_WIDTH_PERCENT },
@@ -34,21 +37,21 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 3, height: 3 },
     alignItems: 'center',
   },
-  card_title: { textAlign: 'center', fontSize: 18 },
+  card_title: { fontSize: 20 },
   card_title_block: {
-    alignItems: 'flex-start',
-    height: card_title_block_height,
+    flexDirection: 'row',
+    alignItems: 'baseline',
     width: '100%',
     paddingLeft: PADDING_WIDTH_PERCENT,
     paddingTop: PADDING_WIDTH_PERCENT,
   },
   card_author: { fontSize: 14, textAlign: 'center' },
   card_content: {
-    flex: 1,
     width: '100%',
     padding: PADDING_WIDTH_PERCENT_DOUBLE,
   },
-  card_post_content: {},
+  flex_start: { alignItems: 'flex-start' },
+  person_column: { paddingLeft: PADDING_WIDTH_PERCENT_DOUBLE },
 });
 
 const PRESS_EXPAND_DELAY = 500;
@@ -64,7 +67,7 @@ const sep = React.cloneElement(row_separator, {
     opacity: 0.6,
   },
 });
-const CARD_TEXT_LIMIT = 200;
+const CARD_TEXT_LIMIT = 150;
 
 class Card extends React.Component {
   // state = { card_expanded: false };
@@ -92,16 +95,24 @@ class Card extends React.Component {
     } else {
       clipped_content = `${content.substring(0, CARD_TEXT_LIMIT)}...`;
     }
-    // let clipped_content = null;
-    // if (this.state.text_expanded) clipped_content = `${content.substring(0, 200)}...`;
-    // else clipped_content = `${content.substring(0, 100)}...`;
-    // const max_content = this.state.expanded ? content : `${content.substring(0, 100)}...`;
+    const vote_column = (
+      <View style={styles.flex_start}>
+        {vote_with_action(true)}
+        {vote_with_action(false)}
+      </View>
+    );
+    const person_column = (
+      <View style={[styles.flex_start, styles.person_column]}>
+        <FontText font={'lato_light'} content={title} style={styles.card_title} />
+        <FontText font={'lato_light'} content={author} style={styles.card_author} />
+      </View>
+    );
 
     return (
       <View style={styles.card_container}>
-        <View style={styles.card_title_block}>
-          <FontText content={title} style={styles.card_title} />
-          <FontText content={author} style={styles.card_author} />
+        <View style={[styles.card_title_block, styles.flex_start]}>
+          {vote_column}
+          {person_column}
         </View>
         {sep}
         {/* This is the animation that needs to expand, come back to*/}
@@ -110,7 +121,11 @@ class Card extends React.Component {
           onLongPress={this.on_long_press_toggle}
           onPress={this.on_short_press_navigate}>
           <Animated.View style={[styles.card_content, { height: this.initial_height }]}>
-            <FontText content={clipped_content} style={styles.card_post_content} />
+            <FontText
+              font={'lato_light'}
+              content={clipped_content}
+              style={styles.card_post_content}
+            />
           </Animated.View>
         </TouchableWithoutFeedback>
       </View>
