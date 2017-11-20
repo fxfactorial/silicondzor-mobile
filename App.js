@@ -30,8 +30,24 @@ const Application = StackNavigator(
 );
 
 export default class extends React.Component {
+  // Let's get setup
   async componentDidMount() {
     init_store.load_font();
+    firebase.initializeApp(credentials.firebase);
+    // This happens because of our login modal
+    firebase.auth().onAuthStateChanged(async user => {
+      if (user != null) {
+        const g = new Date().getTime();
+        await firebase
+          .database()
+          .ref('users/' + user.uid)
+          .set({
+            name: 'Edgar',
+            logged_in: g,
+          });
+        // console.log(user);
+      }
+    });
   }
 
   render() {

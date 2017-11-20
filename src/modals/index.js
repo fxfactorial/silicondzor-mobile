@@ -15,6 +15,7 @@ import Modal from 'react-native-modal';
 import { Facebook } from 'expo';
 import { asyncAction } from 'mobx-utils';
 import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
+import * as firebase from 'firebase';
 
 import {
   PADDING_WIDTH_PERCENT,
@@ -152,6 +153,10 @@ export const FBBasedLogin = observer(
           ? { type: 'success', token: credentials.dev.fbToken }
           : await Facebook.logInWithReadPermissionsAsync(credentials.fb.appId);
         if (type === 'success') {
+          const firebase_credentials = firebase.auth.FacebookAuthProvider.credential(token);
+          const result = await firebase.auth().signInWithCredential(firebase_credentials);
+          console.log({ result });
+
           const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
           const { id: currentUserId, name } = await response.json();
           const resp = await fetch(
