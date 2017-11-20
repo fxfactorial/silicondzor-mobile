@@ -23,7 +23,6 @@ import {
   height as window_height,
 } from '../styles';
 import {
-  login_store,
   user_session_store as user_store,
   login_modal_store,
   new_reply_store as reply_store,
@@ -133,12 +132,11 @@ export const FBBasedLogin = observer(
   class extends React.Component {
     not_logged_in_view() {
       // This can be a nice animation transition to enabling
-      const backgroundColor = login_store.button_enabled ? 'aliceblue' : 'purple';
       return (
         <View style={styles.container}>
           <View style={styles.login_box}>
             <Text style={styles.login_text}>Silicondzor</Text>
-            <Text onPress={this.do_login} style={[styles.login_button, { backgroundColor }]}>
+            <Text onPress={this.do_login} style={[styles.login_button]}>
               Login
             </Text>
           </View>
@@ -170,7 +168,7 @@ export const FBBasedLogin = observer(
             }
             user_store.name = name;
             user_store.user_fb_id = currentUserId;
-            user_store.fb_token = token;
+            user_store.fb.token = token;
             login_modal_store.show = false;
             user_store.user_fb_profile_picture_url = data.url;
           })(await resp.json());

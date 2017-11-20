@@ -31,58 +31,37 @@ export const login_modal_store = new function() {
   this.toggle_show = () => runInAction(() => (this.show = !this.show));
 }();
 
-export const login_store = new function() {
+export const tech_discussion_store = new function() {
   extendObservable(this, {
-    //
+    discussions: [],
   });
 }();
 
-type comment = {
-  replies: Array<comment> | null,
-  parent_comment_id: string,
-  title: string,
-  upvotes: number,
-  downvotes: number,
-};
-
 export const user_session_store = new function() {
   extendObservable(this, {
-    fb_token: null,
+    fb: { token: null, id: '', picture_url: '' },
+    firebase: null,
     currently_viewing_post: {
-      author_id: '1231231',
-      author_name: 'Edgar Aroutiounian',
-      title: 'Something about mobx',
-      content:
-        'Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobxHere is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx',
-      upvotes: 7,
-      downvotes: 3,
-      post_id: '123123',
-      replies: [
-        { author_id: '123123', reply: 'I do not like this' },
-        { author_id: '123124', reply: 'I do not asd' },
-        { author_id: '12310', reply: 'nintento switch' },
-        { author_id: '123193', reply: 'I do things to reply for the sake of it' },
-      ],
+      author_id: '',
+      author_name: '',
+      title: '',
+      content: '',
+      upvotes: 0,
+      downvotes: 0,
+      post_id: '',
+      replies: [],
     },
+    settings: { preference_language: 'en', push_notifications_enabled: true },
     post_cache: observable.map({}),
-    push_notifications_enabled: true,
-    logged_in: computed(function() {
-      return this.fb_token !== null;
-    }),
     name: 'Edgar Aroutiounian',
-    user_fb_id: '360745994365514',
-    user_fb_profile_picture_url:
-      'https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/20031897_317670298673084_847555016148049666_n.jpg?oh=23a10f1f0d27f092d127af2f9e1e344d&oe=5A9C2835',
-
-    // logged_in: false,
-    // name: null,
-    // user_fb_id: null,
-    // user_fb_profile_picture_url: null,
+    logged_in: computed(function() {
+      return this.fb.token !== null;
+    }),
   });
 
   this.toggle_push_notif = () =>
     runInAction(() => {
-      this.push_notifications_enabled = !this.push_notifications_enabled;
+      this.settings.push_notifications_enabled = !this.settings.push_notifications_enabled;
     });
   this.change_upvotes_by = amount =>
     runInAction(() => {
@@ -100,11 +79,9 @@ export const user_session_store = new function() {
     });
 }();
 
-import { events_dummy_results } from 'silicondzor-mobile/dev/dummy-data';
-
 export const tech_events_store = new function() {
   extendObservable(this, {
-    events: events_dummy_results,
+    events: [],
     in_highest_rated_order: computed(function() {
       return [10];
     }),

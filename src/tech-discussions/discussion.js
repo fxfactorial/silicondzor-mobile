@@ -1,5 +1,5 @@
 import React from 'react';
-import { observer } from 'mobx-react/native';
+import { observer, Observer } from 'mobx-react/native';
 import {
   View,
   FlatList,
@@ -21,10 +21,13 @@ import {
   Card,
 } from '../common';
 import { height as window_height } from '../styles';
-import { user_session_store as user_store, language_setting_store as lang_store } from '../state';
+import {
+  user_session_store as user_store,
+  tech_discussion_store,
+  language_setting_store as lang_store,
+} from '../state';
 import { get_post } from '../query';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from 'silicondzor-mobile/src/styles';
-import dummy_data from 'silicondzor-mobile/dev/dummy-data';
 
 const styles = StyleSheet.create({
   posting_container: {
@@ -33,8 +36,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.palette.brighter,
     opacity: 0.75,
   },
-  posts_table: { flex: 2, height: 100000 },
   post_row: { padding: PADDING_WIDTH_PERCENT },
+  no_discuss_text: { fontSize: 24, textAlign: 'center' },
 });
 
 // Need to find out height of a component.
@@ -51,6 +54,29 @@ const render_row = (navigate, { item }) => (
 );
 
 const white_space = <View style={{ height: 15 }} />;
+const outer_style = { height: window_height, alignItems: 'center', margin: '20%' };
+const inner_style = {
+  justifyContent: 'center',
+  width: '100%',
+  backgroundColor: 'white',
+  height: '25%',
+};
+
+const no_discussions = (
+  <Observer>
+    {() => (
+      <View style={outer_style}>
+        <View style={inner_style}>
+          <FontText
+            style={styles.no_discuss_text}
+            font={'lato_bold'}
+            content={'No discussions yet'}
+          />
+        </View>
+      </View>
+    )}
+  </Observer>
+);
 
 export default observer(
   class extends React.Component {
@@ -60,9 +86,9 @@ export default observer(
       return (
         <WithFBLoginModalAvailable style={styles.posting_container}>
           <FlatList
-            style={styles.posts_table}
+            ListEmptyComponent={no_discussions}
             ItemSeparatorComponent={() => white_space}
-            data={dummy_data}
+            data={tech_discussion_store.discussions}
             renderItem={render_row.bind(null, navigate)}
             keyExtractor={({ id }) => id}
           />

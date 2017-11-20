@@ -36,3 +36,7 @@ Run on the ALREADY running Android simulator with
 ```
 $ yarn android
 ```
+
+Data model:
+
+```

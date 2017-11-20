@@ -139,7 +139,7 @@ const push_notifications_row = preference_row(
     {() => (
       <Switch
         onValueChange={user_session_store.toggle_push_notif}
-        value={user_session_store.push_notifications_enabled}
+        value={user_session_store.settings.push_notifications_enabled}
       />
     )}
   </Observer>
@@ -158,7 +158,7 @@ export default observer(
         <Image
           style={styles.profile_img}
           resizeMode={'cover'}
-          source={{ url: user_session_store.user_fb_profile_picture_url }}
+          source={{ url: user_session_store.fb.picture_url }}
         />
       );
     }
