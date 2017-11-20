@@ -19,3 +19,16 @@ export const downvote = async (upvoter_id, post_id) => {
   console.log('downvote');
   console.log({ upvoter_id, post_id });
 };
+
+export const get_post = async post_id => {
+  return {
+    author_id: '360745994365514',
+    author_name: 'Edgar Aroutiounian',
+    title: 'I like coding ReactNative with expo',
+    content: 'Some long content string',
+    upvotes: 30,
+    downvotes: 7,
+    post_id: '3434341',
+    replies: [],
+  };
+};

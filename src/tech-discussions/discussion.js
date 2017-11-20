@@ -21,6 +21,8 @@ import {
   VOTE_ELEMENTS,
 } from '../common';
 import { height as window_height } from '../styles';
+import { user_session_store as user_store } from '../state';
+import { get_post } from '../query';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from 'silicondzor-mobile/src/styles';
 import dummy_data from 'silicondzor-mobile/dev/dummy-data';
 
@@ -84,8 +86,10 @@ class Card extends React.Component {
     //
   };
 
-  on_short_press_navigate = () => {
-    const { navigate } = this.props;
+  on_short_press_navigate = async () => {
+    const { navigate, post_id } = this.props;
+    // Need to check if post already in cache, maybe don't want that logic
+    user_store.set_current_post(await get_post(post_id));
     navigate('post_discussion');
   };
 

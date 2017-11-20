@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react';
+import { toJS } from 'mobx';
 import { observer, Observer } from 'mobx-react/native';
 import { Text, View, FlatList, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
@@ -112,6 +113,8 @@ export default observer(
     });
 
     render() {
+      console.log(JSON.stringify(toJS(user_store.currently_viewing_post)));
+
       return (
         <WithFBLoginModalAvailable style={styles.post_container}>
           <ScrollView style={styles.post_scroll_container}>

@@ -47,13 +47,13 @@ export const user_session_store = new function() {
   extendObservable(this, {
     fb_token: null,
     currently_viewing_post: {
-      author_id: '360745994365514',
-      author_name: 'Edgar Aroutiounian',
-      title: 'I like coding ReactNative with expo',
-      content: 'Some long content string',
-      upvotes: 30,
-      downvotes: 7,
-      post_id: '3434341',
+      author_id: '',
+      author_name: '',
+      title: '',
+      content: '',
+      upvotes: 0,
+      downvotes: 0,
+      post_id: '',
       replies: [],
     },
     post_cache: observable.map({}),
@@ -84,6 +84,11 @@ export const user_session_store = new function() {
   this.change_downvotes_by = amount =>
     runInAction(() => {
       this.currently_viewing_post.downvotes += amount;
+    });
+
+  this.set_current_post = p =>
+    runInAction(() => {
+      this.currently_viewing_post = p;
     });
 }();
 
