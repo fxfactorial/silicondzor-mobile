@@ -14,6 +14,8 @@ export const init_configure_store = new function() {
         lato_italic: require('silicondzor-mobile/assets/fonts/Lato-Italic.ttf'),
         lato_light: require('silicondzor-mobile/assets/fonts/Lato-Light.ttf'),
         lato_regular: require('silicondzor-mobile/assets/fonts/Lato-Regular.ttf'),
+        lato_bold: require('silicondzor-mobile/assets/fonts/Lato-Bold.ttf'),
+        lato_black: require('silicondzor-mobile/assets/fonts/Lato-Black.ttf'),
       });
       await asyncAction(function*() {
         init_configure_store.font_loaded = true;
@@ -47,14 +49,20 @@ export const user_session_store = new function() {
   extendObservable(this, {
     fb_token: null,
     currently_viewing_post: {
-      author_id: '',
-      author_name: '',
-      title: '',
-      content: '',
-      upvotes: 0,
-      downvotes: 0,
-      post_id: '',
-      replies: [],
+      author_id: '1231231',
+      author_name: 'Edgar Aroutiounian',
+      title: 'Something about mobx',
+      content:
+        'Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobxHere is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx Here is a n, Something about mobx, Something about mobx',
+      upvotes: 7,
+      downvotes: 3,
+      post_id: '123123',
+      replies: [
+        { author_id: '123123', reply: 'I do not like this' },
+        { author_id: '123124', reply: 'I do not asd' },
+        { author_id: '12310', reply: 'nintento switch' },
+        { author_id: '123193', reply: 'I do things to reply for the sake of it' },
+      ],
     },
     post_cache: observable.map({}),
     push_notifications_enabled: true,
@@ -137,6 +145,25 @@ export const new_discussion_store = new class extends basic_store {}();
 export const new_tech_event_store = new class extends basic_store {}();
 export const new_bug_bounty_store = new class extends basic_store {}();
 export const new_job_board_store = new class extends basic_store {}();
+
+export const new_reply_store = new class extends basic_store {
+  constructor() {
+    super();
+    extendObservable(this, {
+      show_reply_modal: false,
+    });
+  }
+
+  toggle_modal = () =>
+    runInAction(() => {
+      this.show_reply_modal = !this.show_reply_modal;
+    });
+
+  send_reply = () =>
+    runInAction(() => {
+      this.toggle_modal();
+    });
+}();
 
 // $FlowFixMe;
 import { bug_bounty_dummy_result } from 'silicondzor-mobile/dev/dummy-data';

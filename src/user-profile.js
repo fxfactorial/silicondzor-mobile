@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
 
 const profile = observer(() => (
   <View style={styles.profile_container}>
-    <Text>Hello</Text>
+    <Text>Hello User Profile</Text>
   </View>
 ));
 

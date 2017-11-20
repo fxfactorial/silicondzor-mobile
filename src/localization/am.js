@@ -11,6 +11,7 @@ export default {
   new_post_title: 'Նոր քննարկում',
   silicondzor: 'սիլիկոնձոր',
   replies: 'replies-am',
+  reply_button_text: 'Reply-am',
   screens: {
     tech_discussions: 'քննարկումներ',
     tech_events: 'միջոցառումներ',

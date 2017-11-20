@@ -14,10 +14,22 @@ import { observer } from 'mobx-react/native';
 import Modal from 'react-native-modal';
 import { Facebook } from 'expo';
 import { asyncAction } from 'mobx-utils';
+import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements';
 
-import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_4X } from '../styles';
-import { login_store, user_session_store as user_store, login_modal_store } from '../state';
+import {
+  PADDING_WIDTH_PERCENT,
+  PADDING_WIDTH_PERCENT_4X,
+  height as window_height,
+} from '../styles';
+import {
+  login_store,
+  user_session_store as user_store,
+  login_modal_store,
+  new_reply_store as reply_store,
+} from '../state';
+import { FontText } from '../common';
 import credentials from 'silicondzor-mobile/credentials';
+import colors from '../colors';
 
 const common_login_box = {
   backgroundColor: 'white',
@@ -25,7 +37,16 @@ const common_login_box = {
   width: '80%',
 };
 
+const REPLY_BOX_HEIGHT = Math.floor(window_height * 0.7);
+// Have 0.7 to play with
+const REPLY_HEADER_HEIGHT = Math.floor(window_height * 0.15);
+const REPLY_INPUT_HEIGHT = Math.floor(window_height * 0.45);
+const REPLY_SEND_BUTTON_HEIGHT = Math.floor(window_height * 0.1);
+
 const styles = StyleSheet.create({
+  reply_container: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     alignItems: 'center',
@@ -77,6 +98,32 @@ const styles = StyleSheet.create({
   logout_button: {
     borderWidth: 1,
     backgroundColor: 'red',
+  },
+  reply_modal: {
+    justifyContent: 'flex-start',
+    backgroundColor: 'white',
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    left: 0,
+    height: REPLY_BOX_HEIGHT,
+  },
+  reply_title_header: {
+    minHeight: REPLY_HEADER_HEIGHT,
+  },
+  reply_text_content: {
+    padding: PADDING_WIDTH_PERCENT,
+    minHeight: REPLY_INPUT_HEIGHT,
+  },
+  reply_send_button: {
+    minHeight: REPLY_SEND_BUTTON_HEIGHT,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.palette.base,
+  },
+  reply_send_button_text: {
+    fontSize: 24,
+    color: 'white',
   },
 });
 
@@ -159,3 +206,38 @@ export const FBBasedLogin = observer(
     }
   }
 );
+
+export const Reply = observer(() => {
+  // This should be a swipe up animation, use gesture handler later
+  const content = (
+    <View style={styles.reply_container}>
+      <View style={styles.reply_title_header}>
+        <FormLabel>Optional Reply Title</FormLabel>
+        <FormInput
+          maxLength={140}
+          value={reply_store.title}
+          onChangeText={reply_store.set_title}
+          style={styles.post_title_input}
+        />
+        <FormValidationMessage />
+      </View>
+
+      <TextInput
+        multiline={true}
+        onChangeText={reply_store.set_body}
+        style={[styles.reply_text_content]}
+        value={reply_store.body}
+      />
+      <TouchableOpacity onPress={reply_store.send_reply}>
+        <View style={styles.reply_send_button}>
+          <FontText style={styles.reply_send_button_text} content={'Post Reply'} />
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
+  return (
+    <Modal style={styles.reply_modal} isVisible={reply_store.show_reply_modal}>
+      {content}
+    </Modal>
+  );
+});

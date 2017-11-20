@@ -15,7 +15,6 @@ import colors from '../colors';
 import {
   WithFBLoginModalAvailable,
   row_separator,
-  post_title,
   FontText,
   VOTE_ELEMENTS,
   five_between,
