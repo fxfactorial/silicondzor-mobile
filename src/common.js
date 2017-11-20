@@ -299,3 +299,5 @@ export class Card extends React.Component {
     );
   }
 }
+
+export const REPLY_ARROW_ICON = <Entypo name={'level-down'} size={24} />;

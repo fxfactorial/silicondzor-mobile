@@ -20,12 +20,15 @@ import {
   vote_with_action,
   post_title,
   FontText,
+  REPLY_ARROW_ICON,
 } from '../common';
 import { PADDING_WIDTH_PERCENT, height as window_height } from '../styles';
 import { upvote as upvote_query, downvote as downvote_query } from '../query';
 import colors from '../colors';
 
 const reply_button_height = Math.floor(window_height * 0.07);
+
+const FULL_POST_VIEW_HEIGHT = Math.floor(window_height * 0.35);
 
 const styles = StyleSheet.create({
   post_container: {
@@ -36,8 +39,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   post_content_container: {
-    backgroundColor: 'purple',
-    minHeight: 200,
+    backgroundColor: colors.palette.base,
+    minHeight: FULL_POST_VIEW_HEIGHT,
     padding: PADDING_WIDTH_PERCENT,
   },
   post_content_text: {
@@ -47,7 +50,7 @@ const styles = StyleSheet.create({
   post_scroll_container: {
     flex: 1,
     height: '100%',
-    backgroundColor: 'orange',
+    backgroundColor: colors.palette.brighter,
   },
   replies_container: {
     backgroundColor: 'aliceblue',
@@ -55,7 +58,8 @@ const styles = StyleSheet.create({
     minHeight: '100%',
   },
   title: {
-    fontSize: 24,
+    color: 'white',
+    fontSize: 20,
     paddingVertical: PADDING_WIDTH_PERCENT,
     textAlign: 'center',
   },
@@ -66,13 +70,18 @@ const styles = StyleSheet.create({
     bottom: 30,
     left: 30,
     right: 30,
-
     height: reply_button_height,
     shadowColor: '#646464',
     shadowOpacity: 0.5,
     shadowOffset: { width: 2, height: 2 },
   },
   reply_button_text: { fontSize: 24, color: 'white', backgroundColor: 'transparent' },
+  reply_row: {
+    padding: PADDING_WIDTH_PERCENT,
+    alignItems: 'center',
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+  },
 });
 
 const headerTitle = (
@@ -82,7 +91,6 @@ const headerTitle = (
         `${store.currently_viewing_post.upvotes} ${lang_store.locale.up} ${
           store.currently_viewing_post.downvotes
         } down`;
-
       return <Text style={styles.current_post_title}>{with_votes_title(user_store)}</Text>;
     }}
   </Observer>
@@ -103,13 +111,15 @@ const PostContent = ({ post_id, content }) => (
 
 const Replies = ({ post_id, replies }) => {
   console.log(replies);
-  const replies_render = replies.map(x => <FontText key={x.reply} content={x.reply} />);
-  return (
-    <View style={styles.replies_container}>
-      {replies_render}
-      <Text>Some recursive algo</Text>
-    </View>
-  );
+  const replies_render = replies.map(x => {
+    return (
+      <View style={styles.reply_row}>
+        {REPLY_ARROW_ICON}
+        <FontText key={x.reply} content={x.reply} />
+      </View>
+    );
+  });
+  return <View style={styles.replies_container}>{replies_render}</View>;
 };
 
 const ReplyButton = observer(({ onPress }) => (
