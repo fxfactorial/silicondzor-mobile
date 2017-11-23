@@ -45,8 +45,8 @@
         2,
         "always"
       ],
-	"no-extra-semi": 2,
-	"comma-dangle": 0
+      "no-extra-semi": 2,
+      "comma-dangle": 0
     }
   }
 }
