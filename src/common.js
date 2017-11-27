@@ -9,7 +9,7 @@ import {
   TextInput,
   TouchableWithoutFeedback,
 } from 'react-native';
-import { Entypo, Octicons } from '@expo/vector-icons';
+import { Entypo, Octicons, FontAwesome } from '@expo/vector-icons';
 import { observer, Observer } from 'mobx-react/native';
 import {
   Badge,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   person_column: { paddingLeft: PADDING_WIDTH_PERCENT_DOUBLE },
   card_title: { fontSize: 20 },
   badge_row: { flexDirection: 'row', minWidth: '70%' },
-  badge: { backgroundColor: colors.palette.base },
+  badge: { backgroundColor: colors.palette.base, flexDirection: 'row' },
   card_author: { fontSize: 14, color: 'white', textAlign: 'center' },
   card_content: {
     width: '100%',
@@ -97,12 +97,19 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 3, height: 3 },
     alignItems: 'center',
   },
+  no_table_data_yet: {
+    flex: 1,
+  },
 });
 
 export const DrawerIconOpener = ({ navigate }) => (
   <TouchableOpacity onPress={() => navigate('DrawerOpen')}>
     <Entypo style={styles.code_icon} name={'code'} size={24} />
   </TouchableOpacity>
+);
+
+export const COMMENT_BUBBLE = (
+  <FontAwesome style={{ color: 'white', paddingLeft: 5 }} name={'commenting-o'} size={16} />
 );
 
 export const NEWS_TAB_ICON = <Entypo name={'news'} size={24} />;
@@ -258,7 +265,7 @@ export class Card extends React.Component {
         {vote_with_action(false)}
       </View>
     );
-    const comment_count = `${reply_count} ${lang_store.locale.replies}`;
+    const comment_count = `${reply_count}`;
     const person_column = (
       <View style={[styles.flex_start, styles.person_column]}>
         <FontText font={'lato_light'} content={title} style={styles.card_title} />
@@ -269,6 +276,7 @@ export class Card extends React.Component {
           {five_between}
           <Badge containerStyle={styles.badge}>
             <FontText font={'lato_light'} content={comment_count} style={styles.card_author} />
+            {COMMENT_BUBBLE}
           </Badge>
         </View>
       </View>
@@ -300,3 +308,4 @@ export class Card extends React.Component {
 }
 
 export const REPLY_ARROW_ICON = <Entypo name={'level-down'} size={24} />;
+export const NoDiscussion = ({ topic }) => <View style={styles.no_table_data_yet}>{/ * */}</View>;
