@@ -11,7 +11,7 @@
     "android": "./node_modules/.bin/exp ios --offline",
     "lint": "standardx --verbose | snazzy",
     "pub": "EXPO_LOCAL=1 EXPO_DEBUG=true ./node_modules/.bin/exp publish",
-    "ios-build": "EXPO_LOCAL=1 EXPO_DEBUG=true node /Users/Edgar/universe/dev/exp/bin/exp.js build:ios --local-auth-flow"
+    "ios-build": "EXPO_LOCAL=1 EXPO_DEBUG=true node /Users/Edgar/universe/dev/exp/bin/exp.js build:ios --local-auth"
   },
   "dependencies": {
     "date-fns": "^1.29.0",
@@ -37,6 +37,10 @@
     "flow-bin": "^0.59.0",
     "snazzy": "^7.0.0",
     "standardx": "^1.0.3"
+  },
+  "optionalDependencies": {
+    "@expo/traveling-fastlane-darwin": "^1.0.4",
+    "@expo/traveling-fastlane-linux": "^1.0.4"
   },
   "eslintConfig": {
     "rules": {
