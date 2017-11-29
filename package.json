@@ -39,8 +39,8 @@
     "standardx": "^1.0.3"
   },
   "optionalDependencies": {
-    "@expo/traveling-fastlane-darwin": "^1.0.5",
-    "@expo/traveling-fastlane-linux": "^1.0.5"
+    "@expo/traveling-fastlane-darwin": "^1.0.11",
+    "@expo/traveling-fastlane-linux": "^1.0.11"
   },
   "eslintConfig": {
     "rules": {
