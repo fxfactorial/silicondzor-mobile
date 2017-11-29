@@ -28,7 +28,7 @@ import {
   new_reply_store as reply_store,
 } from '../state';
 import { FontText } from '../common';
-import credentials from 'silicondzor-mobile/credentials';
+// import credentials from 'silicondzor-mobile/credentials';
 import colors from '../colors';
 
 const common_login_box = {
@@ -148,8 +148,15 @@ export const FBBasedLogin = observer(
       const is_connected = __DEV__ ? true : await NetInfo.isConnected.fetch();
       if (is_connected && user_store.logged_in === false) {
         const { type, token } = __DEV__
-          ? { type: 'success', token: credentials.dev.fbToken }
-          : await Facebook.logInWithReadPermissionsAsync(credentials.fb.appId);
+          ? {
+              type: 'success',
+              token: '',
+              // credentials.dev.fbToken
+            }
+          : await Facebook.logInWithReadPermissionsAsync(
+              // credentials.fb.appId
+              ''
+            );
         if (type === 'success') {
           const firebase_credentials = firebase.auth.FacebookAuthProvider.credential(token);
           const result = await firebase.auth().signInWithCredential(firebase_credentials);
