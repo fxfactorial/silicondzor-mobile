@@ -61,14 +61,6 @@
   dependencies:
     cross-spawn "^5.1.0"
 
-"@expo/traveling-fastlane-darwin@^1.0.12":
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/@expo/traveling-fastlane-darwin/-/traveling-fastlane-darwin-1.0.12.tgz#c150f7fd7fe82387ebd02b005a478a339ddb6a89"
-
-"@expo/traveling-fastlane-linux@^1.0.12":
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/@expo/traveling-fastlane-linux/-/traveling-fastlane-linux-1.0.12.tgz#077175d56320d4258dcdb9970c2fcba62b517623"
-
 "@expo/vector-icons@^6.2.0":
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/@expo/vector-icons/-/vector-icons-6.2.0.tgz#1269b263c3d78609cfa5e65b9b524aeb4718c335"

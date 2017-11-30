@@ -38,10 +38,6 @@
     "snazzy": "^7.0.0",
     "standardx": "^1.0.3"
   },
-  "optionalDependencies": {
-    "@expo/traveling-fastlane-darwin": "^1.0.12",
-    "@expo/traveling-fastlane-linux": "^1.0.12"
-  },
   "eslintConfig": {
     "rules": {
       "camelcase": 0,

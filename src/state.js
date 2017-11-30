@@ -34,9 +34,10 @@ export const login_modal_store = new function() {
   this.toggle_show = () => runInAction(() => (this.show = !this.show));
 }();
 
+import d from 'silicondzor-mobile/dev/dummy-data';
 export const tech_discussion_store = new function() {
   extendObservable(this, {
-    discussions: [],
+    discussions: Array.from(d),
   });
 }();
 
