@@ -11,7 +11,7 @@
     "android": "./node_modules/.bin/exp ios --offline",
     "lint": "standardx --verbose | snazzy",
     "pub": "EXPO_LOCAL=1 EXPO_DEBUG=true ./node_modules/.bin/exp publish",
-    "ios-build": "EXPO_STAGING=1 node /Users/Edgar/universe/dev/exp/bin/exp.js build:ios --local-auth"
+    "ios-build": "EXPO_STAGING=1 exp build:ios --local-auth"
   },
   "dependencies": {
     "date-fns": "^1.29.0",
