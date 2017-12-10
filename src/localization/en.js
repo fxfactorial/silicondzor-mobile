@@ -18,6 +18,7 @@ export default {
   reply_button_text: 'Reply',
   screens: {
     tech_discussions: 'Discussions',
+    experts_corner: `Expert's Corner`,
     tech_events: 'Upcoming events',
     bug_bounty_board: 'Bug Bounties',
     jobs_board: 'Jobs',

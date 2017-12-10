@@ -34,7 +34,7 @@ import {
   init_configure_store as init_store,
 } from './state';
 
-const card_height = Math.floor(window_height * 0.22);
+const CARD_HEIGHT = Math.floor(window_height * 0.22);
 
 const styles = StyleSheet.create({
   post_title: { fontSize: 18 },
@@ -73,12 +73,10 @@ const styles = StyleSheet.create({
   code_icon: { color: colors.palette.darkest, opacity: 0.9 },
   card_title_block: {
     flexDirection: 'row',
-    alignItems: 'baseline',
     width: '100%',
     paddingLeft: PADDING_WIDTH_PERCENT,
     paddingTop: PADDING_WIDTH_PERCENT,
   },
-
   flex_start: { alignItems: 'flex-start' },
   person_column: { paddingLeft: PADDING_WIDTH_PERCENT_DOUBLE },
   card_title: { fontSize: 20 },
@@ -90,7 +88,7 @@ const styles = StyleSheet.create({
     padding: PADDING_WIDTH_PERCENT_DOUBLE,
   },
   card_container: {
-    height: card_height,
+    height: CARD_HEIGHT,
     backgroundColor: 'white',
     shadowColor: '#646464',
     shadowOpacity: 0.5,
@@ -235,6 +233,9 @@ const sep = React.cloneElement(row_separator, {
   },
 });
 
+export const VERTICAL_SPACER = <View style={{ height: 3 }} />;
+export const HORIZONTAL_SPACER = <View style={{ width: 5 }} />;
+
 export class Card extends React.Component {
   // state = { card_expanded: false };
 
@@ -262,6 +263,7 @@ export class Card extends React.Component {
     const vote_column = (
       <View style={styles.flex_start}>
         {vote_with_action(true)}
+        {VERTICAL_SPACER}
         {vote_with_action(false)}
       </View>
     );
@@ -269,6 +271,7 @@ export class Card extends React.Component {
     const person_column = (
       <View style={[styles.flex_start, styles.person_column]}>
         <FontText font={'lato_light'} content={title} style={styles.card_title} />
+        {VERTICAL_SPACER}
         <View style={styles.badge_row}>
           <Badge containerStyle={styles.badge}>
             <FontText font={'lato_light'} content={author} style={styles.card_author} />

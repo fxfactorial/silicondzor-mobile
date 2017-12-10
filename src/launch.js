@@ -13,6 +13,7 @@ import tech_events from './tech-events';
 import bug_bounty_board from './bug-bounty-board';
 import jobs_board from './jobs-board';
 import settings from './settings';
+import experts_corner from './experts-corner';
 import {
   login_modal_store,
   language_setting_store as lang_store,
@@ -116,6 +117,7 @@ const drawer_component = ({ navigation }) => {
           {spacer}
           <View style={styles.rows_block}>
             {row('tech_discussions', () => navigate('tech_discussions'))}
+            {row('experts_corner', () => navigate('experts_corner'))}
             {row('tech_events', () => navigate('tech_events'))}
             {row('bug_bounty_board', () => navigate('bug_bounty_board'))}
             {row('jobs_board', () => navigate('jobs_board'))}
@@ -136,6 +138,7 @@ const open_right = (
 export default DrawerNavigator(
   {
     tech_discussions: { screen: tech_discussions },
+    experts_corner: { screen: experts_corner },
     tech_events: { screen: tech_events },
     bug_bounty_board: { screen: bug_bounty_board },
     jobs_board: { screen: jobs_board },

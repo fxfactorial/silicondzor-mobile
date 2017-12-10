@@ -14,6 +14,7 @@ export default {
   reply_button_text: 'Reply-am',
   screens: {
     tech_discussions: 'քննարկումներ',
+    experts_corner: `Expert's Corner`,
     tech_events: 'միջոցառումներ',
     bug_bounty_board: 'Բագագին Սխալագին',
     jobs_board: 'գործեր',

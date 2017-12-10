@@ -13,6 +13,7 @@ export default {
   replies: 'replies-ru',
   screens: {
     tech_discussions: 'Обсуждение',
+    experts_corner: `Expert's Corner`,
     tech_events: 'событие',
     bug_bounty_board: 'Конкурс за ошибкам',
     jobs_board: 'работы',
