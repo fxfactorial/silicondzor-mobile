@@ -29,6 +29,7 @@
     "react-native-extended-stylesheet": "^0.8.0",
     "react-native-modal": "^4.1.1",
     "react-native-tab-view": "^0.0.70",
+    "react-native-typography": "^1.0.3",
     "react-navigation": "^1.0.0-beta.19"
   },
   "devDependencies": {
