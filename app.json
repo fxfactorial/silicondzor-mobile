@@ -4,7 +4,7 @@
     "description": "For the tech community in Armenia",
     "slug": "silicondzor-mobile",
     "privacy": "public",
-    "sdkVersion": "24.0.0",
+    "sdkVersion": "25.0.0",
     "version": "0.0.1",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
@@ -19,10 +19,8 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier":"com.hyegar.sd-mobile-2"
+      "bundleIdentifier": "com.hyegar.sd-mobile"
     },
-    "android":{
-
-    }
+    "android": {}
   }
 }

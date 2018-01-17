@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "date-fns": "^1.29.0",
-    "expo": "^24.0.0",
+    "expo": "^25.0.0-rc.1",
     "firebase": "^4.6.0",
     "mobx": "^3.3.1",
     "mobx-react": "^4.3.3",
@@ -23,7 +23,7 @@
     "mobx-utils": "^3.2.1",
     "querystring": "^0.2.0",
     "react": "16.0.0-beta.5",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-24.0.0.tar.gz",
+    "react-native": "expo/react-native#sdk-25.0.0-beta.0",
     "react-native-datepicker": "^1.6.0",
     "react-native-elements": "^0.18.2",
     "react-native-extended-stylesheet": "^0.8.0",
@@ -41,10 +41,7 @@
   "eslintConfig": {
     "rules": {
       "camelcase": 0,
-      "semi": [
-        2,
-        "always"
-      ],
+      "semi": [2, "always"],
       "no-extra-semi": 2,
       "comma-dangle": 0
     }
