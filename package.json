@@ -16,7 +16,7 @@
   "dependencies": {
     "date-fns": "^1.29.0",
     "expo": "^25.0.0-rc.1",
-    "firebase": "^4.6.0",
+    "firebase": "^4.8.2",
     "mobx": "^3.3.1",
     "mobx-react": "^4.3.3",
     "mobx-state-tree": "^1.1.0",
@@ -30,7 +30,7 @@
     "react-native-modal": "^4.1.1",
     "react-native-tab-view": "^0.0.70",
     "react-native-typography": "^1.0.3",
-    "react-navigation": "^1.0.0-beta.19"
+    "react-navigation": "^1.0.0-beta.27"
   },
   "devDependencies": {
     "flow": "^0.2.3",
