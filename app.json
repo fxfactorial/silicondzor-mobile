@@ -21,6 +21,8 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.hyegar.sd-mobile"
     },
-    "android": {}
+    "android": {
+      "package": "com.hyegar.sdmobile"
+    }
   }
 }
