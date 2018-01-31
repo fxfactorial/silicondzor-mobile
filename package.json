@@ -22,7 +22,7 @@
     "mobx-state-tree": "^1.1.0",
     "mobx-utils": "^3.2.1",
     "querystring": "^0.2.0",
-    "react": "16.0.2",
+    "react": "16.2.0",
     "react-native": "expo/react-native#sdk-25.0.0",
     "react-native-datepicker": "^1.6.0",
     "react-native-elements": "^0.18.2",
