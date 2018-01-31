@@ -19,7 +19,10 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.hyegar.sd-mobile"
+      "bundleIdentifier": "com.hyegar.sd-mobile",
+      "locales": {
+        "ru": "./languages/russian.json"
+      }
     },
     "android": {
       "package": "com.hyegar.sdmobile"

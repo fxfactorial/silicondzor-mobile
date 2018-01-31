@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   code_icon: { color: colors.palette.darkest, opacity: 0.9 },
 });
 
-const obs = (
+const app_name = (
   <Observer>
     {() => <FontText content={lang_store.locale.silicondzor} style={styles.custom_drawer_banner} />}
   </Observer>
@@ -76,7 +76,7 @@ const top_drawer_banner = () => (
   <View style={styles.top_row}>
     <Avatar medium={true} rounded={true} source={{ uri: user_store.fb.picture_url }} />
     <View style={styles.top_row_name_block}>
-      {obs}
+      {app_name}
       {logged_in_name}
     </View>
   </View>

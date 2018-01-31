@@ -3,6 +3,7 @@ import { TouchableOpacity, StyleSheet } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import { TabNavigator } from 'react-navigation';
 import { Observer } from 'mobx-react/native';
+import { Permissions } from 'expo';
 
 import {
   NEWS_TAB_ICON,
@@ -25,9 +26,28 @@ const styles = StyleSheet.create({
   },
 });
 
+const perms = async () => {
+  const list = [
+    // Permissions.NOTIFICATIONS,
+    // Permissions.LOCATION,
+    // Permissions.CAMERA,
+    // Permissions.AUDIO_RECORDING,
+    Permissions.CONTACTS,
+    // Permissions.CAMERA_ROLL,
+  ];
+  for (const p of list) {
+    const r = await Permissions.askAsync(p);
+    console.log({ r, p });
+  }
+};
+
 const headerTitle = (
   <Observer>
-    {() => <FontText content={lang_store.locale.silicondzor} style={styles.title} />}
+    {() => (
+      <TouchableOpacity onPress={perms}>
+        <FontText content={lang_store.locale.silicondzor} style={styles.title} />
+      </TouchableOpacity>
+    )}
   </Observer>
 );
 
