@@ -3,6 +3,7 @@ import { TouchableOpacity } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { type NavigationState } from 'react-navigation';
 import { useStrict } from 'mobx';
+import { AppLoading, Font } from 'expo';
 import * as firebase from 'firebase';
 
 // import credentials from './credentials.json';
@@ -12,14 +13,14 @@ import post_drilldown from './src/tech-discussions/post-drilldown';
 import user_profile from './src/user-profile.js';
 import colors from './src/colors';
 import { PADDING_WIDTH_PERCENT, PADDING_WIDTH_PERCENT_DOUBLE } from './src/styles';
-import { init_configure_store as init_store, user_session_store as user_store } from './src/state';
+import { user_session_store as user_store } from './src/state';
 
 const credentials = {};
 
 console.disableYellowBox = true;
 useStrict(true);
 
-const Application = StackNavigator(
+const RootNavigation = StackNavigator(
   {
     home: { screen: launch_drawer },
     post_discussion: { screen: post_drilldown },
@@ -32,10 +33,22 @@ const Application = StackNavigator(
   }
 );
 
-export default class extends React.Component {
-  // Let's get setup
-  async componentDidMount() {
-    init_store.load_font();
+export default class SiliconDzorApplication extends React.Component {
+  state = { application_ready: false };
+
+  handle_loading_error = e => {
+    console.warn('Application encountered error' + JSON.stringify(e));
+  };
+
+  async _application_startup_caching() {
+    await Font.loadAsync({
+      lato_italic: require('silicondzor-mobile/assets/fonts/Lato-Italic.ttf'),
+      lato_light: require('silicondzor-mobile/assets/fonts/Lato-Light.ttf'),
+      lato_regular: require('silicondzor-mobile/assets/fonts/Lato-Regular.ttf'),
+      lato_bold: require('silicondzor-mobile/assets/fonts/Lato-Bold.ttf'),
+      lato_black: require('silicondzor-mobile/assets/fonts/Lato-Black.ttf'),
+    });
+
     // firebase.initializeApp(credentials.firebase);
     // // This happens because of our login modal
     // firebase.auth().onAuthStateChanged(async user => {
@@ -52,9 +65,20 @@ export default class extends React.Component {
     //     // console.log(user);
     //   }
     // });
+
+    //
   }
 
   render() {
-    return <Application />;
+    if (this.state.application_ready === false) {
+      return (
+        <AppLoading
+          onError={this._application_startup_caching}
+          startAsync={this._application_startup_caching}
+          onFinish={() => this.setState(() => ({ application_ready: true }))}
+        />
+      );
+    }
+    return <RootNavigation />;
   }
 }

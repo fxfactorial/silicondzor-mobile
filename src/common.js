@@ -31,7 +31,6 @@ import {
   language_setting_store as lang_store,
   new_discussion_store,
   user_session_store as user_store,
-  init_configure_store as init_store,
 } from './state';
 
 const CARD_HEIGHT = Math.floor(window_height * 0.22);
@@ -216,11 +215,13 @@ const InputWithEffect = observer(
   }
 );
 
-export const FontText = observer(({ content, font = 'lato_regular', style = {}, rest = {} }) => (
-  <Text style={[style, { fontFamily: init_store.font_loaded ? font : 'Arial' }]} {...rest}>
-    {content}
-  </Text>
-));
+export const FontText = observer(
+  ({ content, fontFamily = 'lato_regular', style = {}, rest = {} }) => (
+    <Text style={[style, { fontFamily }]} {...rest}>
+      {content}
+    </Text>
+  )
+);
 
 export const five_between = <View style={{ width: 5 }} />;
 

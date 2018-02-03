@@ -3,29 +3,6 @@ import { Font } from 'expo';
 import { extendObservable, when, runInAction, computed, observable } from 'mobx';
 import { asyncAction } from 'mobx-utils';
 
-export const init_configure_store = new function() {
-  extendObservable(this, {
-    font_loaded: false,
-    // application_ready:false
-  });
-
-  // this.set_application_ready = () => this.application_ready = true;
-
-  this.load_font = () =>
-    runInAction(async () => {
-      await Font.loadAsync({
-        lato_italic: require('silicondzor-mobile/assets/fonts/Lato-Italic.ttf'),
-        lato_light: require('silicondzor-mobile/assets/fonts/Lato-Light.ttf'),
-        lato_regular: require('silicondzor-mobile/assets/fonts/Lato-Regular.ttf'),
-        lato_bold: require('silicondzor-mobile/assets/fonts/Lato-Bold.ttf'),
-        lato_black: require('silicondzor-mobile/assets/fonts/Lato-Black.ttf'),
-      });
-      await asyncAction(function*() {
-        init_configure_store.font_loaded = true;
-      })();
-    });
-}();
-
 export const login_modal_store = new function() {
   extendObservable(this, {
     show: false,
