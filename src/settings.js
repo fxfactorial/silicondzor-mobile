@@ -154,12 +154,22 @@ export default observer(
     });
 
     signed_in_view() {
+      if (user_session_store.app_loaded === true) {
+        return (
+          <View style={styles.profile_img}>
+            <Text>Come back to this</Text>
+          </View>
+          // <Image
+          //   style={styles.profile_img}
+          //   resizeMode={'cover'}
+          //   source={{ url: user_session_store.fb.picture_url }}
+          // />
+        );
+      }
       return (
-        <Image
-          style={styles.profile_img}
-          resizeMode={'cover'}
-          source={{ url: user_session_store.fb.picture_url }}
-        />
+        <View style={styles.profile_img}>
+          <Text>Haven't loaded yet</Text>
+        </View>
       );
     }
 

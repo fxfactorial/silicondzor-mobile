@@ -72,15 +72,18 @@ const logged_in_name = (
   <Observer>{() => <FontText content={user_store.name} style={styles.logged_in_name} />}</Observer>
 );
 
-const top_drawer_banner = () => (
-  <View style={styles.top_row}>
-    <Avatar medium={true} rounded={true} source={{ uri: user_store.fb.picture_url }} />
-    <View style={styles.top_row_name_block}>
-      {app_name}
-      {logged_in_name}
+const top_drawer_banner = () => {
+  // Put this bad in
+  // const s = <Avatar medium={true} rounded={true} source={{ uri: user_store.fb.picture_url }} />;
+  return (
+    <View style={styles.top_row}>
+      <View style={styles.top_row_name_block}>
+        {app_name}
+        {logged_in_name}
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 const spacer = <View style={styles.spacer} />;
 const minispacer = <View style={styles.mini_spacer} />;

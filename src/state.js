@@ -20,6 +20,7 @@ export const tech_discussion_store = new function() {
 
 export const user_session_store = new function() {
   extendObservable(this, {
+    application_ready: false,
     fb: {
       token: null,
       id: '',
@@ -44,6 +45,7 @@ export const user_session_store = new function() {
     }),
   });
 
+  this.set_app_loaded = () => runInAction(() => (this.application_ready = true));
   this.set_firebase_user_obj = obj =>
     runInAction(() => {
       this.firebase = obj;
