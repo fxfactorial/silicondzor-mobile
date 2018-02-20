@@ -11,7 +11,8 @@
     "node_modules/realm/lib/index.js",
     "node_modules/react/dist/react.js",
     "node_modules/react-navigation/lib-rn/react-navigation.js",
-    "node_modules/react-native/Libraries/react-native/react-native.js"
+    "node_modules/react-native/Libraries/react-native/react-native.js",
+    "node_modules/expo/src/Expo.js"
   ],
   "plugins": {
     "node": { },
