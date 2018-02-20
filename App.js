@@ -31,7 +31,7 @@ const RootNavigation = StackNavigator(
 );
 
 export default observer(
-  class SiliconDzorApplication extends React.Component {
+  class YerevanCoderApplication extends React.Component {
     handle_loading_error = e => {
       console.warn('Application encountered error' + JSON.stringify(e));
     };

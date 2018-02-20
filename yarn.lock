@@ -1896,9 +1896,9 @@ expand-range@^1.8.1:
   dependencies:
     fill-range "^2.1.0"
 
-expo@26.0.0-rc.0:
-  version "26.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/expo/-/expo-26.0.0-rc.0.tgz#d9b3645b83c55d61f718a10e4dce349e0ac8feb5"
+expo@26.0.0-rc.1:
+  version "26.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/expo/-/expo-26.0.0-rc.1.tgz#66de74f55a2b6d3b1212f12a289ed068f9af6780"
   dependencies:
     "@expo/vector-icons" "^6.2.0"
     babel-preset-expo "^4.0.0"
@@ -1915,7 +1915,7 @@ expo@26.0.0-rc.0:
     react-native-branch "2.0.0-beta.3"
     react-native-gesture-handler "1.0.0-alpha.40"
     react-native-maps "0.19.0"
-    react-native-svg "https://github.com/expo/react-native-svg/archive/5.5.1-exp.1.tar.gz"
+    react-native-svg "6.2.1"
     uuid-js "^0.7.5"
     websql "https://github.com/expo/node-websql/archive/18.0.0.tar.gz"
 
@@ -4011,12 +4011,13 @@ react-native-safe-module@^1.1.0:
   dependencies:
     dedent "^0.6.0"
 
-"react-native-svg@https://github.com/expo/react-native-svg/archive/5.5.1-exp.1.tar.gz":
-  version "5.5.1"
-  resolved "https://github.com/expo/react-native-svg/archive/5.5.1-exp.1.tar.gz#0c6e373dbe63cfcbdd465f5b2965ebe011c8962f"
+react-native-svg@6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-6.2.1.tgz#4cdd71577814fb4d60496afc75e660c482f41c84"
   dependencies:
     color "^2.0.1"
     lodash "^4.16.6"
+    pegjs "^0.10.0"
 
 react-native-tab-view@^0.0.70:
   version "0.0.70"
